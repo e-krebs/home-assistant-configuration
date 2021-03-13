@@ -1,0 +1,58 @@
+media_player:
+  - platform: universal
+    name: pc_universal
+    state_template: >
+      {% if is_state('switch.pc_switch_safe', 'on') %}
+        on
+      {% else %}
+        off
+      {% endif %}
+    commands:
+      turn_on:
+        service: switch.turn_on
+        data:
+          entity_id: switch.pc_switch_safe
+      turn_off:
+        service: switch.turn_off
+        data:
+          entity_id: switch.pc_switch_safe
+      volume_set:
+        service: media_player.volume_set
+        data_template:
+          entity_id: media_player.bureau
+          volume_level: '{{ volume_level }}'
+      volume_up:
+        service: media_player.volume_up
+        data:
+          entity_id: media_player.bureau
+      volume_down:
+        service: media_player.volume_down
+        data:
+          entity_id: media_player.bureau
+      volume_mute:
+        service: media_player.volume_mute
+        data_template:
+          entity_id: media_player.bureau
+          is_volume_muted: '{{ is_volume_muted }}'
+    attributes:
+      is_volume_muted: media_player.bureau|is_volume_muted
+      volume_level: media_player.bureau|volume_level
+
+homeassistant:
+  customize:
+    media_player.pc_universal:
+      icon: mdi:desktop-classic
+      friendly_name: pc
+
+script:
+  pc_turn_off:
+    alias: pc turn off (dependency)
+    sequence:
+    - service: switch.turn_off
+      entity_id: switch.pc_switch
+    - condition: template
+      value_template: "{{ float(states('sensor.ecran_power')) < 2 }}"
+    - service: media_player.turn_off
+      entity_id: media_player.bureau
+    - service: switch.turn_off
+      entity_id: switch.ecran

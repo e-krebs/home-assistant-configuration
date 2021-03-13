@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+     width="200" height="200" viewBox="0 0 200 200">
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 169.5,75.5 h 2 v 19 h -2 z" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999982px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 5,5.5 H 130" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999988;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 90.5,100.02786 V 195" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999964;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 90.5,5 V 35" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 5,100.5 H 29.999999" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999982px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 50.000001,100.5 H 130" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999982px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 59.999998,35.499999 H 90.999997" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999976;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 59.500002,35.000002 v 34" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999976px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 49.999998,69.5 H 100" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.9999997px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 120,69.499997 h 49.99999" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 5,69.500002 H 30.000001" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.9999997px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 155,100.5 h 40" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 170.49999,94.999996 V 100" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:1.00000012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 170.49999,69 v 6" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999976px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 30.5,68.5 h 19 v 2 h -19 z" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999976;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 129.49415,5.076265 10.0117,64.847445" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999982;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 194.49999,100 v 94.99999" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999988;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 5.5,5 V 195" />
+  <path style="fill:none;stroke:#b9b9b9;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 5,194.5 H 195" />
+</svg>

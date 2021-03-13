@@ -1,0 +1,57 @@
+title: raspberry
+icon: mdi:raspberry-pi
+cards:
+  - type: glance
+    title: compagnie
+    show_name: false
+    entities:
+      - sensor.compagnie_krebs_tech
+      - sensor.compagnie_expiry
+      - entity: sensor.current_version
+        name: installée
+      - entity: sensor.release_version
+        name: disponible
+  - type: horizontal-stack
+    cards:
+      - type: gauge
+        entity: sensor.load_5m
+        max: 3
+        severity:
+          green: 0
+          yellow: 1.1
+          red: 2
+      - type: gauge
+        entity: sensor.processor_use
+        severity: !include ../view-raspberry/gauge-severity_percent.yaml
+  - type: horizontal-stack
+    cards:
+      - type: gauge
+        entity: sensor.memory_use_percent
+        unit: ''
+        severity: !include ../view-raspberry/gauge-severity_percent.yaml
+      - type: gauge
+        entity: sensor.swap_use_percent
+        unit: ''
+        severity: !include ../view-raspberry/gauge-severity_percent.yaml
+  - type: custom:mini-graph-card
+    hours_to_show: 48
+    line_width: 3
+    decimals: 1
+    hour24: true
+    align_icon: left
+    align_header: left
+    show:
+      legend: false
+      points: true
+    entities:
+      - entity: sensor.home_assistant_v2_db
+  - type: horizontal-stack
+    cards:
+      - type: markdown
+        theme: markdown
+        content: !secret repo_markdown
+      - type: vertical-stack
+        cards:
+          - type: gauge
+            entity: sensor.disk_use_percent
+            severity: !include ../view-raspberry/gauge-severity_percent.yaml

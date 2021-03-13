@@ -1,0 +1,25 @@
+ifttt:
+  key: !secret ifttt_key
+
+automation:
+  - id: ifttt_call_service
+    alias: ifttt_call_service
+    trigger:
+      platform: event
+      event_type: ifttt_webhook_received
+      event_data:
+        action: call_service
+    action:
+      service_template: '{{ trigger.event.data.service }}'
+      data_template:
+        entity_id: '{{ trigger.event.data.entity_id }}'
+
+  - id: ifttt_call_script
+    alias: ifttt_call_script
+    trigger:
+      platform: event
+      event_type: ifttt_webhook_received
+      event_data:
+        action: call_script
+    action:
+      service_template: '{{ trigger.event.data.script }}'

@@ -1,0 +1,28 @@
+{
+  "python.linting.pylintEnabled": false,
+  "colorInfo.languages": [
+    {
+      "selector": "css",
+      "colors": "css"
+    },
+    {
+      "selector": "sass",
+      "colors": "css"
+    },
+    {
+      "selector": "scss",
+      "colors": "css"
+    },
+    {
+      "selector": "less",
+      "colors": "css"
+    },
+    {
+      "selector": "yaml",
+      "colors": "css"
+    }
+  ],
+  "files.associations": {
+    "*.yaml": "home-assistant"
+  }
+}

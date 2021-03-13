@@ -1,0 +1,12 @@
+- id: '1571816015694'
+  alias: colis
+  description: ''
+  trigger:
+  - entity_id: sensor.seventeentrack_package_9a00600799908
+    platform: state
+  action:
+  - data_template:
+      message: '{{ state_attr(trigger.entity_id, ''tracking_number'') }}'
+      title: suivi du colis mise à jour
+    service: notify.mobile_app_pixel_4
+  mode: single

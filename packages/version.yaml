@@ -1,0 +1,62 @@
+recorder:
+  include:
+    entities:
+      - sensor.current_version
+      - sensor.release_version
+
+sensor:
+  - platform: version
+    name: current_version
+
+  - platform: rest
+    resource: !secret endpoint_hassio_release
+    name: release_version
+    value_template: '{{ value_json.homeassistant.raspberrypi3 }}'
+
+homeassistant:
+  customize:
+    sensor.current_version:
+      friendly_name: version installée
+      icon: mdi:raspberry-pi
+
+    sensor.release_version:
+      friendly_name: version disponible
+      icon: mdi:cloud-download
+
+automation:
+  #hass.io update check
+  - id: check_version
+    alias: checks release version for raspberry pi 3
+    trigger:
+      platform: time_pattern
+      hours: '/6'
+      minutes: 00
+      seconds: 00
+    condition:
+      condition: template
+      value_template: '{{ states(''sensor.current_version'') != states(''sensor.release_version'') }}'
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          title: 'nouvelle version publiée : {{ states(''sensor.release_version'') }}'
+          message: 'version actuelle : {{ states(''sensor.current_version'') }}'
+          data:
+            icon: /local/notification/tag-text-outline.png
+            url: !secret endpoint_hassio_dashboard
+            tag: 'version'
+
+  - id: update_available
+    alias: 'Update Available Notifications'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.updater
+      to: 'on'
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          title: 'mise à jour disponible ({{ states(''sensor.release_version'') }})'
+          message: 'version actuelle : {{ states(''sensor.current_version'') }}'
+          data:
+            icon: /local/notification/cloud-download.png
+            url: !secret endpoint_hassio_dashboard
+            tag: 'update'

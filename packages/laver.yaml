@@ -1,0 +1,178 @@
+recorder:
+  include:
+    entities:
+      - sensor.machine_a_laver
+      - sensor.laver_power
+
+input_select:
+  machine_a_laver:
+    options:
+      - 'off'
+      - 'idle'
+      - 'on'
+      - 'done'
+
+sensor:
+  - platform: template
+    sensors:
+      machine_a_laver:
+        value_template: '{{ states(''input_select.machine_a_laver'')}}'
+
+      laver_power:
+        value_template: '{{ state_attr(''switch.laver_switch'', ''current_power_w'') | float }}'
+        unit_of_measurement: W
+
+tplink:
+  switch:
+    - host: 192.168.86.34 # laver
+
+homeassistant:
+  customize:
+    input_select.machine_a_laver:
+      friendly_name: machine à laver
+      icon: mdi:washing-machine
+
+    sensor.machine_a_laver:
+      friendly_name: machine à laver
+      icon: mdi:washing-machine
+
+    sensor.laver_power:
+      friendly_name: consommation machine à laver
+      icon: mdi:washing-machine
+
+automation:
+  # prise laver : ON
+  - id: laver_state_on
+    alias: laver state on
+    trigger:
+      platform: state
+      entity_id: switch.laver_switch
+      from : "off"
+      to : "on"
+    action:
+      - delay: 00:00:5
+      - service: notify.mobile_app_pixel_4
+        data:
+          message: "prise de la machine à laver allum\xE9e"
+          data:
+            icon: /local/notification/power-plug-on.png?v=0
+            url: !secret endpoint_hassio
+            tag: 'laver_switch'
+
+  # prise laver : OFF
+  - id: laver_state_off
+    alias: laver state off
+    trigger:
+      platform: state
+      entity_id: switch.laver_switch
+      from : "on"
+      to : "off"
+    action:
+      - delay: 0:0:5
+      - service: notify.mobile_app_pixel_4
+        data:
+          message: "prise de la machine à laver \xE9teinte"
+          data:
+            icon: /local/notification/power-plug-off.png?v=0
+            url: !secret endpoint_hassio
+            tag: 'laver_switch'
+
+  - id: to_off
+    alias: to off
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.laver_power
+      below: 0.55
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.machine_a_laver
+          state: 'idle'
+        - condition: state
+          entity_id: input_select.machine_a_laver
+          state: 'on'
+        - condition: state
+          entity_id: input_select.machine_a_laver
+          state: 'done'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.machine_a_laver
+          option: 'off'
+
+  - id: to_iddle
+    alias: to iddle
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.laver_power
+      above: 0.55
+    condition:
+      - condition: state
+        entity_id: input_select.machine_a_laver
+        state: 'off'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.machine_a_laver
+          option: 'idle'
+      - service: notify.mobile_app_pixel_4
+        data:
+          message: machine à laver allumée
+          data:
+            icon: /local/notification/machine_a_laver-idle.png
+            tag: 'machine_a_laver'
+            url: !secret endpoint_machine_a_laver
+
+  - id: to_on
+    alias: to on
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.laver_power
+      above: 2.0
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.machine_a_laver
+          state: 'idle'
+        - condition: state
+          entity_id: input_select.machine_a_laver
+          state: 'off'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.machine_a_laver
+          option: 'on'
+      - service: notify.mobile_app_pixel_4
+        data:
+          message: machine en cours
+          data:
+            icon: /local/notification/machine_a_laver-on.png
+            tag: 'machine_a_laver'
+            url: !secret endpoint_machine_a_laver
+
+  - id: to_done
+    alias: to done
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.laver_power
+      above: 0.55
+      below: 2.0
+    condition:
+      - condition: state
+        entity_id: input_select.machine_a_laver
+        state: 'on'
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.machine_a_laver
+          option: 'done'
+      - service: notify.mobile_app_pixel_4
+        data:
+          title: machine terminée
+          message: merci de vider la machine
+          data:
+            icon: /local/notification/machine_a_laver-done.png
+            tag: 'machine_a_laver'
+            url: !secret endpoint_machine_a_laver

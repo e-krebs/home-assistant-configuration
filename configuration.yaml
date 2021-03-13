@@ -1,0 +1,50 @@
+auth: # Enable the auth component
+config: # Enables configuration UI
+frontend: # Enables the frontend + themes
+  themes: !include_dir_named themes/ 
+hassio:
+history: # en/disables support for showing history state changes over time
+homeassistant:
+  name: Home
+  latitude: !secret home_lat
+  longitude: !secret home_lon
+  elevation: 39
+  unit_system: metric
+  time_zone: Europe/Paris
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - 127.0.0.1
+        - 172.30.33.0
+  whitelist_external_dirs:
+    - !secret hassio_dbpath
+  packages: !include_dir_named packages/
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
+lovelace:
+  mode: yaml
+  resources:
+    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+      type: module
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+      type: js
+    - url: /hacsfiles/lovelace-swipe-navigation/swipe-navigation.js
+      type: js
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: js
+    - url: /local/custom-ui/weather-card-chart.js?v=0.2.7
+      type: module
+    - url: /hacsfiles/lovelace-card-tools/card-tools.js
+      type: js
+    - url: /local/custom-ui/state-badge-modder.js?v=2.0.0
+      type: js
+map:
+mobile_app:
+recorder:
+  purge_keep_days: 14
+system_health:
+updater:
+  include_used_components: true
+automation: !include automations.yaml

@@ -1,0 +1,66 @@
+recorder:
+  include:
+    entities:
+      - person.manu
+
+device_tracker:
+  - platform: ping
+    hosts:
+      manu_wifi: !secret ip_manu
+
+person:
+  - name: manu
+    id: manu
+    device_trackers:
+      - device_tracker.manu_wifi
+      - device_tracker.pixel_4
+
+binary_sensor:
+  - platform: template
+    sensors:
+      manu:
+        device_class: occupancy
+        value_template: >
+          {{ is_state('person.manu', 'home') }}
+
+homeassistant:
+  customize:
+    device_tracker.google_maps_102756001364712049780:
+      friendly_name: manu
+      icon: mdi:google-maps
+
+    device_tracker.manu_wifi:
+      icon: mdi:cellphone-wireless
+      friendly_name: pixel 4 (wifi)
+    
+    device_tracker.pixel_4:
+      icon: mdi:cellphone
+      friendly_name: pixel 4
+
+    person.manu:
+      icon: mdi:human-male
+
+automation:
+  - id: light_while_out
+    alias: lights while out
+    trigger:
+      platform: state
+      entity_id: binary_sensor.manu
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
+    condition:
+      - condition: state
+        entity_id: light.all
+        state: 'on'
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          message: 'lumière allumée'
+          data:
+            icon: /local/notification/light-on.png
+            url: !secret endpoint_hassio
+            actions:
+            - title: éteindre
+              action: all_lights_off

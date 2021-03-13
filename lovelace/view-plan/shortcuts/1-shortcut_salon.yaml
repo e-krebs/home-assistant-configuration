@@ -1,0 +1,8 @@
+type: entity-button
+entity: input_boolean.salon
+name: '​'
+tap_action:
+  action: navigate
+  navigation_path: /lovelace/2
+hold_action:
+  action: none

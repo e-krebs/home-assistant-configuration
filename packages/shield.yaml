@@ -1,0 +1,85 @@
+homeassistant:
+  customize:
+    media_player.shield_universal:
+      icon: mdi:youtube-tv
+      friendly_name: shield
+
+    media_player.shield_cast:
+      icon: mdi:cast
+
+    media_player.shield_tv:
+      icon: mdi:youtube-tv
+
+media_player:
+  - platform: androidtv
+    name: shield tv
+    host: 192.168.86.89
+    adb_server_ip: 127.0.0.1    
+  - platform: universal
+    name: shield_universal
+    children:
+      - media_player.shield_cast
+      - media_player.shield_tv
+      - media_player.beam
+    state_template: >
+      {% if is_state('media_player.shield_tv','off') and is_state('media_player.shield_cast','off') and states('sensor.tv_power') | float | round(1) < 0.4 %}
+        off
+      {% elif states('sensor.tv_power') | float | round(1) < 0.4 %}
+        tv off
+      {% else %}
+        {{ states('media_player.shield_tv') }}
+      {% endif %}
+    commands:
+      turn_on:
+        service: script.shield_on
+      turn_off:
+        service: script.shield_off
+      volume_set:
+        service: media_player.volume_set
+        data_template:
+          entity_id: media_player.beam
+          volume_level: '{{ volume_level }}'
+      volume_up:
+        service: media_player.volume_up
+        data:
+          entity_id: media_player.beam
+      volume_down:
+        service: media_player.volume_down
+        data:
+          entity_id: media_player.beam
+      volume_mute:
+        service: media_player.volume_mute
+        data_template:
+          entity_id: media_player.beam
+          is_volume_muted: '{{ is_volume_muted }}'
+      select_source:
+        service: media_player.select_source
+        data_template:
+          entity_id: media_player.shield_tv
+          source: '{{ source }}'
+    attributes:
+      is_volume_muted: media_player.beam|is_volume_muted
+      volume_level: media_player.beam|volume_level
+      source: media_player.shield_tv|source
+      source_list: media_player.shield_tv|source_list
+
+script:
+  shield_on:
+    alias: shield on
+    sequence:
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.shield_tv
+    - service: script.tv_on
+    - service: script.tv_input_android_tv
+
+  shield_off:
+    alias: shield off
+    sequence:
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.shield_tv
+    - condition: state
+      entity_id: media_player.ps4
+      state: 'off'
+    - service: script.tv_off

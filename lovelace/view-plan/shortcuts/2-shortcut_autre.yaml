@@ -1,0 +1,8 @@
+type: entity-button
+entity: input_boolean.autre
+name: '​'
+tap_action:
+  action: navigate
+  navigation_path: /lovelace/3
+hold_action:
+  action: none

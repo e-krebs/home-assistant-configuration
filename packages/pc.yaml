@@ -1,0 +1,245 @@
+recorder:
+  include:
+    entities:
+      - sensor.pc_power
+      - sensor.ecran_power
+
+sensor:
+  - platform: template
+    sensors:
+      ecran_power:
+        value_template: '{{ state_attr(''switch.ecran'', ''current_power_w'') | float }}'
+        unit_of_measurement: W
+
+      pc_power_raw:
+        value_template: >-
+          {% if is_state('sensor.pc_power', '0.0') %}          
+          {% else %}
+            {{states('sensor.pc_power') | round(1)}}
+          {% endif %}
+
+      ecran_power_raw:
+        value_template: >-
+          {% if is_state('sensor.ecran_power', '0.0') %}          
+          {% else %}
+            {{states('sensor.ecran_power') | round(1)}}
+          {% endif %}
+
+tplink:
+  switch:
+    - host: 192.168.86.33 # pc
+
+switch:
+  - platform: template
+    switches:
+      pc_switch_safe:
+        value_template: "{{ is_state('switch.pc_switch', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.pc_switch
+        turn_off:
+          service: script.turn_on
+          data:
+            entity_id: script.pc_switch_off
+
+rest_command:
+  pc_sleep:
+    url: !secret endpoint_pc_sleep
+
+homeassistant:
+  customize:
+    sensor.pc_power:
+      friendly_name: consommation pc
+      icon: mdi:power
+
+    sensor.pc_power_raw:
+      friendly_name: consommation pc
+      icon: mdi:power
+
+    sensor.ecran_power:
+      friendly_name: consommation écran
+      icon: mdi:power
+
+    sensor.ecran_power_raw:
+      friendly_name: consommation écran
+      icon: mdi:power
+
+    switch.pc_switch:
+      friendly_name: prise pc (attention)
+      entity_picture: /local/entity/power-plug.svg
+
+    switch.pc_switch_safe:
+      friendly_name: pc
+      icon: mdi:desktop-tower
+
+    switch.ecran:
+      friendly_name: écran
+      icon: mdi:monitor
+
+    script.pc_deep_sleep:
+      icon: mdi:power-plug-off
+
+automation:
+  # prise pc : ON
+  - id: pc_state_on
+    alias: pc state on
+    trigger:
+      platform: state
+      entity_id: switch.pc_switch
+      from : "off"
+      to : "on"
+    condition:
+      - condition: template
+        value_template: '{{ not is_state(''person.manu'', ''home'')}}'
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          message: "prise du pc allum\xE9e"
+          data:
+            icon: /local/notification/power-plug-on.png?v=0
+            url: !secret endpoint_hassio
+            tag: 'pc_switch'
+            actions:
+            - title: éteindre
+              action: pc_switch_safe_off
+
+  # prise pc : ON
+  - id: pc_state_on_deps
+    alias: pc state on (deps)
+    trigger:
+      platform: state
+      entity_id: switch.pc_switch
+      from : "off"
+      to : "on"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.ecran
+
+  # prise pc : OFF
+  - id: pc_state_off
+    alias: pc state off
+    trigger:
+      platform: state
+      entity_id: switch.pc_switch
+      from : "on"
+      to : "off"
+    condition:
+      - condition: template
+        value_template: '{{ not is_state(''person.manu'', ''home'')}}'
+    action:
+      - delay: 0:0:10
+      - service: notify.mobile_app_pixel_4
+        data:
+          message: "prise du pc \xE9teinte"
+          data:
+            icon: /local/notification/power-plug-off.png?v=0
+            url: !secret endpoint_hassio
+            tag: 'pc_switch'
+
+  # timers
+  # pc allumé à 14h00
+  - id: check_pc_on_14
+    alias: checks if pc is ON (2pm)
+    trigger:
+      platform: time
+      at: '14:00:00'
+    condition:
+      - condition: state
+        entity_id: 'switch.pc_switch'
+        state: 'on'
+      - condition: template
+        value_template: '{{ not is_state(''person.manu'', ''home'')}}'
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          message: le pc est allumé
+          data:
+            icon: /local/notification/desktop-on.png
+            url: !secret endpoint_hassio
+            tag: 'pc_switch'
+            actions:
+            - title: éteindre
+              action: pc_switch_safe_off
+
+  # pc allumé à 20h00
+  - id: check_pc_on_20
+    alias: checks if pc is ON (8pm)
+    trigger:
+      platform: time
+      at: '20:00:00'
+    condition:
+      - condition: state
+        entity_id: 'switch.pc_switch'
+        state: 'on'
+      - condition: template
+        value_template: '{{ not is_state(''person.manu'', ''home'')}}'
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          message: le pc est allumé
+          data:
+            icon: /local/notification/desktop-on.png
+            url: !secret endpoint_hassio
+            tag: 'pc_switch'
+            actions:
+            - title: éteindre
+              action: pc_switch_safe_off
+
+script:
+  pc_deep_sleep_retry:
+    alias: 'retry : pc : veille prolongée + prise éteinte'
+    sequence:
+    - condition: state
+      entity_id: switch.pc_switch
+      state: 'on'
+    - delay: 00:00:10
+    - service_template: >
+        {% if (states('sensor.pc_power') | float > 20) %}
+          script.pc_not_off
+        {% else %}
+          script.pc_turn_off
+        {% endif %}
+
+  pc_deep_sleep:
+    alias: 'pc : veille prolongée + prise éteinte'
+    sequence:
+    - condition: state
+      entity_id: switch.pc_switch
+      state: 'on'
+    - service: rest_command.pc_sleep
+    - delay: 00:00:40
+    - service_template: >
+        {% if (states('sensor.pc_power') | float > 20) %}
+          script.pc_deep_sleep_retry
+        {% else %}
+          script.pc_turn_off
+        {% endif %}
+
+  pc_not_off:
+    alias: pc not off (dependency)
+    sequence:
+    - service: notify.mobile_app_pixel_4
+      data:
+        title: le pc n'est pas éteint !
+        message: 'consommation : {{ states(''sensor.pc_power'')}} W'
+        data:
+          icon: /local/notification/power-plug.png
+          url: !secret endpoint_hassio
+          tag: 'pc_switch'
+          actions:
+          - title: éteindre
+            action: pc_switch_safe_off
+
+  pc_switch_off:
+    alias: 'pc: veille prolongée / off'
+    sequence:
+    - condition: state
+      entity_id: switch.pc_switch
+      state: 'on'
+    - service_template: >
+        {% if (states('sensor.pc_power') | float > 20) %}
+          script.pc_deep_sleep
+        {% else %}
+          script.pc_turn_off
+        {% endif %}

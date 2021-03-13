@@ -1,0 +1,22 @@
+automation:
+  - id: hacs_update
+    alias: hacs update available
+    trigger:
+      platform: state
+      entity_id: sensor.hacs
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.hacs
+        above: 0
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          title: '{{ states(''sensor.hacs'') }} {{ state_attr(''sensor.hacs'', ''unit_of_measurement'') }} on Community Store'
+          message: >
+            {%- for repository in state_attr('sensor.hacs', 'repositories') -%}
+            {{ repository.display_name }}
+            {%- endfor -%}
+          data:
+            icon: /local/notification/hacs.png
+            url: !secret endpoint_hacs
+            tag: 'hacs'

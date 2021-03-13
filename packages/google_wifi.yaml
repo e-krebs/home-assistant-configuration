@@ -1,0 +1,16 @@
+sensor:
+  - platform: google_wifi
+    host: !secret ip_google_wifi
+
+homeassistant:
+  customize:
+    sensor.google_wifi_status:
+      friendly_name: état
+      icon: mdi:checkbox-marked-circle-outline
+
+    sensor.google_wifi_current_version:
+      friendly_name: version
+      icon: mdi:alert-decagram
+
+    sensor.google_wifi_new_version:
+      friendly_name: mise à jour

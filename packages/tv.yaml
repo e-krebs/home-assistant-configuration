@@ -1,0 +1,62 @@
+sensor:
+  - platform: template
+    sensors:
+      tv_power:
+        value_template: '{{ state_attr(''switch.tv_switch'', ''current_power_w'') | float }}'
+        unit_of_measurement: W
+
+binary_sensor:
+  - platform: template
+    sensors:
+      tv:
+        value_template: >
+          {{ states('sensor.tv_power') | float | round(1) >= 0.4 }}
+
+tplink:
+  switch:
+    - host: 192.168.86.35 # tv
+
+homeassistant:
+  customize:
+    sensor.tv_power:
+      friendly_name: consommation tv
+      icon: mdi:power
+
+    switch.tv_switch:
+      friendly_name: prise tv
+
+    script.tv_on:
+      friendly_name: allumer la tv
+      icon: mdi:television
+      can_cancel: false
+
+    script.tv_off:
+      friendly_name: éteindre la tv
+      icon: mdi:television-off
+      can_cancel: false
+
+script:
+  tv_on:
+    alias: allumer tv
+    sequence:
+    - condition: numeric_state
+      entity_id: sensor.tv_power
+      below: 0.4
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: !secret harmony_tv_id
+        command: PowerOn
+    - delay: 00:00:20
+
+  tv_off:
+    alias: éteindre tv
+    sequence:
+    - condition: numeric_state
+      entity_id: sensor.tv_power
+      above: 0.4
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: !secret harmony_tv_id
+        command: PowerOff

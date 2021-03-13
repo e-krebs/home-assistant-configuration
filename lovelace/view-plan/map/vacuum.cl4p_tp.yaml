@@ -1,0 +1,9 @@
+type: custom:state-badge-modder
+card:
+  type: state-icon
+  entity: vacuum.cl4p_tp
+style:
+  bottom: 0%
+  left: 8.6%
+state_badge_css: /local/custom-ui/state-badge.css?v=0.0.14
+extra_css: /local/custom-ui/cl4p-tp.css?v=0.0.1

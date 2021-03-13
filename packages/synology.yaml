@@ -1,0 +1,13 @@
+synology_dsm:
+  - host: !secret dns_synology
+    username: !secret syno_username
+    password: !secret syno_password
+    ssl: true
+
+homeassistant:
+  customize:
+    sensor.mogaba_volume_used_volume_1:
+      friendly_name: stockage utilisé
+
+    sensor.mogaba_total_size_volume_1:
+      icon: mdi:harddisk

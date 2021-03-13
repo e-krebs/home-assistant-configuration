@@ -1,0 +1,9 @@
+sonos:
+  media_player:
+    hosts: !secret ip_sonos_beam
+
+homeassistant:
+  customize:
+    media_player.beam:
+      friendly_name: barre de son
+      icon: mdi:surround-sound

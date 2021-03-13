@@ -1,0 +1,16 @@
+zone:
+  - name: algolia
+    latitude: !secret algo_lat
+    longitude: !secret algo_lon
+    radius: !secret zone_radius
+    icon: mdi:timer
+  - name: bluesyflat
+    latitude: !secret bluesy_lat
+    longitude: !secret bluesy_lon
+    radius: !secret zone_radius
+    icon: mdi:music
+  - name: home
+    latitude: !secret home_lat
+    longitude: !secret home_lon
+    radius: !secret zone_radius
+    icon: mdi:home

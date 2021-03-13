@@ -1,0 +1,95 @@
+recorder:
+  include:
+    entities:
+      - sensor.disk_use_percent
+      - sensor.home_assistant_v2_db
+      - sensor.load_5m
+      - sensor.memory_use_percent
+      - sensor.processor_use
+      - sensor.swap_use_percent
+
+sensor:
+  - platform: filesize
+    file_paths:
+      - !secret hassio_db
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: load_5m
+      - type: memory_use_percent
+      - type: processor_use
+      - type: swap_use_percent
+
+homeassistant:
+  customize:
+    sensor.home_assistant_v2_db:
+      friendly_name: taille bdd
+      icon: mdi:database
+
+    sensor.disk_use_percent:
+      friendly_name: usage disque
+    sensor.load_5m:
+      friendly_name: charge CPU (5min)
+    sensor.memory_use_percent:
+      friendly_name: usage RAM
+    sensor.processor_use:
+      friendly_name: usage processeur
+    sensor.swap_use_percent:
+      friendly_name: usage swap
+
+automation:
+  #start or shutdown notification
+  - id: homeassistant_start
+    alias: homeassistant start
+    initial_state: 'on'
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          title: "home assistant a démarré 😀"
+          message: 'version {{ states(''sensor.current_version'') }}'
+          data:
+            icon: /local/notification/server.png
+            url: !secret endpoint_hassio
+            tag: 'homeassistant'
+      - service: frontend.set_theme
+        data:
+          name: custom
+      - service: automation.turn_on
+        entity_id: group.all_automations
+
+  - id: homeassistant_shutdown
+    alias: homeassistant shutdown
+    trigger:
+      platform: homeassistant
+      event: shutdown
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          title: "home assistant s'éteint 😭"
+          message: 'version {{ states(''sensor.current_version'') }}'
+          data:
+            icon: /local/notification/server-off.png?v=0 # asking an image from a server shuting down... duh!
+            url: !secret endpoint_hassio
+            tag: 'homeassistant'
+
+  #hass.io database size
+  - id: db_size
+    alias: 'database size'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.home_assistant_v2_db
+      above: !secret hassio_db_size
+      for:
+        hours: 1
+    action:
+      - service: notify.mobile_app_pixel_4
+        data:
+          title: 'alerte base de donnée'
+          message: 'taille actuelle : {{ states(''sensor.home_assistant_v2_db'') }} MB'
+          data:
+            icon: /local/notification/database-check.png
+            url: !secret endpoint_hassio_host

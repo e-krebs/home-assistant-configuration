@@ -1,0 +1,39 @@
+:host {
+  left: 0 !important;
+}
+ha-icon {
+  width: 94%;
+  height: 94%;
+}
+ha-icon[data-state="off"],
+ha-icon[data-domain="person"][data-state] {
+  color: var(--state-icon-off-color);
+}
+ha-icon[data-state="on"],
+ha-icon[data-state="idle"],
+ha-icon[data-state="playing"],
+ha-icon[data-state="paused"],
+ha-icon[data-state="cleaning"],
+ha-icon[data-state="returning"],
+ha-icon[data-domain="person"][data-state="home"] {
+  color: var(--paper-item-icon-active-color);
+}
+ha-icon[data-state="tv off"],
+ha-icon[data-state="error"],
+ha-icon[data-domain="sensor"][data-state="done"] {
+  color: var(--state-icon-error-color);
+}
+ha-icon[data-domain="sensor"][data-state="idle"] {
+  color: var(--state-icon-warn-color);
+}
+ha-icon[data-domain="person"][data-state]::after {
+  position: fixed;
+  bottom: -18px;
+  right: 0px;
+}
+ha-icon[data-domain="person"][data-state="algolia"]::after {
+  content:url(/local/ui-lovelace/algolia.svg);
+}
+ha-icon[data-domain="person"][data-state="bluesyflat"]::after {
+  content:url(/local/ui-lovelace/bluesyflat.svg);
+}

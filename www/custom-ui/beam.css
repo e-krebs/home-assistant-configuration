@@ -1,0 +1,3 @@
+ha-icon[data-domain="media_player"][data-state="paused"] {
+  color: var(--state-icon-off-color);
+}

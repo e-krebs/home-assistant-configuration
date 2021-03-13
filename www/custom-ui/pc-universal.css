@@ -1,0 +1,10 @@
+ha-icon[data-domain="media_player"][data-state="on"] {
+  background-image: url('/local/entity/windows-10.jpg');
+  color: transparent !important;
+  border-radius: 50%;
+  background-size: contain;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: bottom;
+}

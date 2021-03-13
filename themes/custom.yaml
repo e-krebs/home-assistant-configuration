@@ -1,0 +1,15 @@
+state-icon-color: '#03A9F4' #bleu
+state-icon-off-color: '#B9B9B9' #gris
+state-icon-error-color: '#DF4C1E' #rouge
+state-icon-warn-color: '#FDD835' #jaune
+accent-color: '#FDD835' #jaune
+state-icon-unavailable-color: '#484f58' # middle grey
+paper-item-icon-active-color: '#0DA035' #vert (switch)
+paper-dialog-color: '#727272'
+mini-media-player-icon-color: '#03A9F4' #bleu
+primary-background-color: '#0b0c0e' # almost black
+card-background-color: '#141619' # dark grey
+secondary-background-color: '#141619' # dark grey
+primary-text-color: '#c9d1d9' # light grey
+divider-color: '#484f58' # middle grey
+switch-unchecked-color: '#484f58' # middle grey

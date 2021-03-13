@@ -1,0 +1,92 @@
+title: appartement
+icon: mdi:floor-plan
+cards:
+  - type: vertical-stack
+    cards:
+    - type: horizontal-stack
+      cards: !include_dir_list ../view-plan/shortcuts
+    - type: picture-elements
+      image: /local/floorplan/floorplan-map.svg?v1.0.0
+      elements: !include_dir_list ../view-plan/map
+    - type: markdown
+      theme: markdown
+      content: >
+        ## [Colis](https://buyer.17track.net/en/myshipment)
+        {% for state in states.sensor %}
+        {% if state.entity_id.split('sensor.seventeentrack_package_') | length > 1 %}
+          **{{ state.attributes.friendly_name }} – {{ as_timestamp(state.last_updated) | timestamp_custom('%a %d %b %H:%M') }}**
+          <ha-icon icon="{{state.attributes.icon}}"></ha-icon> {{ state.attributes.tracking_number }} – _{{ state.state }}_
+          {{ state.attributes.info_text }}
+
+        {% endif %}
+        {% endfor %}
+    - type: custom:vertical-stack-in-card
+      cards:
+      - type: markdown
+        theme: markdown
+        content: >
+          <center> {{ states('weather.paris_12eme_arrondissement') }} </center>
+      - type: glance
+        entities:
+          - entity: sensor.paris_12eme_arrondissement_cloud_cover
+          - entity: sensor.paris_12eme_arrondissement_daily_precipitation
+          - entity: sensor.paris_12eme_arrondissement_rain_chance
+          - entity: sensor.paris_12eme_arrondissement_snow_chance
+          - entity: sensor.paris_12eme_arrondissement_freeze_chance
+            name: 'gel'
+    - type: conditional
+      conditions:
+        - entity: sensor.dark_sky_alerts
+          state_not: '0'
+      card:
+        type: markdown
+        theme: markdown
+        content: |
+          ## alertes météo
+          {% if (states.sensor.dark_sky_alerts.state | int == 1) %}
+            <ha-icon icon="mdi:alert-decagram-outline"></ha-icon> **{{ state_attr('sensor.dark_sky_alerts', 'title' | string) }}** _({{ state_attr('sensor.dark_sky_alerts', 'severity' | string) }})_
+            _expires: {{ state_attr('sensor.dark_sky_alerts', 'expires' | string) | timestamp_custom('%A %d %b %H:%M') }}_
+            {{ state_attr('sensor.dark_sky_alerts', 'uri' | string) }}
+            {{ state_attr('sensor.dark_sky_alerts', 'description' | string) }}
+          {% else %}
+            {% for i in range(0,states.sensor.dark_sky_alerts.state | int) %}
+            <ha-icon icon="mdi:alert-decagram-outline"></ha-icon> **{{ state_attr('sensor.dark_sky_alerts', 'title_' + i | string) }}** _({{ state_attr('sensor.dark_sky_alerts', 'severity_' + i | string) }})_
+              _expires: {{ state_attr('sensor.dark_sky_alerts', 'expires_' + i | string) | timestamp_custom('%A %d %b %H:%M') }}_
+              {{ state_attr('sensor.dark_sky_alerts', 'uri_' + i | string) }}
+              {{ state_attr('sensor.dark_sky_alerts', 'description_' + i | string) }}
+            {% endfor %}
+          {% endif %}
+  - type: vertical-stack
+    cards:
+      - type: custom:weather-card-chart
+        weather: weather.paris_12eme_arrondissement
+        title: météo france
+      - type: custom:weather-card-chart
+        weather: weather.dark_sky
+        title: dark sky
+      - type: iframe
+        title: températures
+        url: >-
+          https://compagnie.krebs.tech:444/api/hassio_ingress/Wbv0mV6oopHztKBYL9lRMRYHs7k0YlDbLBZ8xdIcdyk/d-solo/nhdFp2kgz/4-days?theme=dark&panelId=2
+      - type: custom:mini-graph-card
+        hours_to_show: 48
+        line_width: 2
+        decimals: 1
+        hour24: true
+        points_per_hour: 2
+        align_icon: left
+        align_header: left
+        show:
+          legend: false
+        entities:
+            - sensor.home_temperature
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: markdown
+            theme: markdown
+            content: >
+              <center>
+                il y a {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 / 24) | round(0, "floor") }} jour(s) et {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 % 24) | round(0, "floor") }} heure(s)
+              </center>
+          - type: picture-entity
+            entity: camera.cl4p_tp_cleaning_map

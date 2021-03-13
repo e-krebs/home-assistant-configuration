@@ -1,0 +1,84 @@
+notify:
+  - name: notify
+    platform: html5
+    vapid_pub_key: !secret vapid_pub_key
+    vapid_prv_key: !secret vapid_prv_key
+    vapid_email: !secret vapid_email
+
+automation:
+  # notifications
+  # clic sur 'éteindre le pc'
+  - id: turn_off_pc_notif
+    alias: turn off pc from notification
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: pc_switch_safe_off
+    action:
+      - service: switch.turn_off
+        entity_id: switch.pc_switch_safe
+
+  # clic sur 'éteindre les lumières'
+  - id: turn_off_lights_notif
+    alias: turn off lights from notification
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: all_lights_off
+    action:
+      - service: light.turn_off
+        entity_id: light.all
+
+  #clic sur 'désactiver 30min' (intrusion_check)
+  - id: intrusion_check_disable
+    alias: disable intrusion_check automation for 30 min
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: intrusion_check_disable
+    action:
+      - service: automation.turn_off
+        entity_id: automation.intrusion_check
+      - delay: 00:30:00
+      - service: automation.turn_on
+        entity_id: automation.intrusion_check
+
+  #clic sur 'nettoyer' (notify_run_vaccum)
+  - id: start_cleaning
+    alias: start cleaning
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: vacuum_clean
+    action:
+      - service: vacuum.start
+        entity_id: vacuum.cl4p_tp
+
+
+  #clic sur 'nettoyer' (notify_run_vaccum)
+  - id: stop_cleaning
+    alias: stop cleaning
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: vacuum_stop
+    action:
+      - service: vacuum.stop
+        entity_id: vacuum.cl4p_tp
+
+  #clic sur 'nettoyer' (notify_run_vaccum)
+  - id: dock_vaccum
+    alias: dock vacuum
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: vacuum_dock
+    action:
+      - service: vacuum.return_to_base
+        entity_id: vacuum.cl4p_tp

@@ -1,0 +1,13 @@
+input_boolean:
+  autre:
+    name: autre
+    initial: off
+    icon: mdi:home
+  chambre:
+    name: chambre
+    initial: off
+    icon: mdi:bed
+  salon:
+    name: salon
+    initial: off
+    icon: mdi:sofa

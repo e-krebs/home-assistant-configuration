@@ -1,0 +1,38 @@
+title: salon
+icon: mdi:sofa
+cards:
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:mini-media-player
+                entity: media_player.ps4_universal
+                artwork: cover
+                toggle_power: false
+              - type: custom:mini-media-player
+                entity: media_player.shield_universal
+                artwork: cover
+                toggle_power: false
+          - type: conditional
+            conditions:
+              - entity: media_player.ps4_universal
+                state: 'off'
+              - entity: media_player.shield_universal
+                state: 'off'
+            card:
+              type: custom:mini-media-player
+              entity: media_player.beam
+              artwork: cover
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards: !include_dir_list ../view-salon/tv
+          - type: vertical-stack
+            cards:
+              - type: light
+                entity: light.salon_group
+              - type: custom:mini-media-player
+                entity: media_player.salon_universal
+                artwork: cover

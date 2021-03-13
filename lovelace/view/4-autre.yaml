@@ -1,0 +1,36 @@
+title: autre
+icon: mdi:home
+cards:
+  - type: vertical-stack
+    cards:
+    - type: custom:mini-media-player
+      entity: media_player.cuisine_universal
+      artwork: cover
+    - type: horizontal-stack
+      cards:
+        - type: light
+          entity: light.cuisine_group
+        - type: light
+          entity: light.couloir_group
+    - type: horizontal-stack
+      cards:
+        - type: custom:mini-media-player
+          entity: media_player.gobelin_universal
+          artwork: cover
+    - type: glance
+      entities:
+        - entity: sensor.machine_a_laver
+    - type: custom:mini-graph-card
+      hours_to_show: 48
+      line_width: 3
+      decimals: 0
+      lower_bound: 0
+      upper_bound: 50
+      hour24: true
+      points_per_hour: 2
+      align_icon: left
+      align_header: left
+      show:
+        legend: false
+      entities:
+        - sensor.laver_power

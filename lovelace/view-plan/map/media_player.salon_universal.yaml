@@ -1,0 +1,10 @@
+type: custom:state-badge-modder
+card:
+  type: state-icon
+  entity: media_player.salon_universal
+  hold_action:
+    action: toggle
+style:
+  bottom: 24%
+  right: 0%
+state_badge_css: /local/custom-ui/state-badge.css?v=0.0.14

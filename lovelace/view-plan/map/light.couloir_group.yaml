@@ -1,0 +1,10 @@
+type: custom:state-badge-modder
+card:
+  type: state-icon
+  entity: light.couloir_group
+  hold_action:
+    action: toggle
+style:
+  top: 42%
+  right: 37%
+state_badge_css: /local/custom-ui/state-badge.css?v=0.0.14

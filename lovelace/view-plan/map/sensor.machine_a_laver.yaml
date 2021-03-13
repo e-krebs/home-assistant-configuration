@@ -1,0 +1,9 @@
+type: custom:state-badge-modder
+card:
+  type: state-icon
+  entity: sensor.machine_a_laver
+style:
+  top: 25%
+  left: 26%
+state_badge_css: /local/custom-ui/state-badge.css?v=0.0.14
+extra_css: /local/custom-ui/shake.css?v=0.0.1

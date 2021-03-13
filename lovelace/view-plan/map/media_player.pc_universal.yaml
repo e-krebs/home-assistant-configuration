@@ -1,0 +1,11 @@
+type: custom:state-badge-modder
+card:
+  type: state-icon
+  entity: media_player.pc_universal
+  hold_action:
+    action: toggle
+style:
+  bottom: 35.5%
+  left: 40%
+state_badge_css: /local/custom-ui/state-badge.css?v=0.0.14
+extra_css: /local/custom-ui/pc-universal.css?v=0.0.1
