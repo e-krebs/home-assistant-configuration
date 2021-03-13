@@ -1,3 +1,9 @@
+recorder:
+  include:
+    entities:
+      - sensor.mogaba_used_space_volume_1
+      - sensor.mogaba_volume_used_volume_1
+
 synology_dsm:
   - host: !secret dns_synology
     username: !secret syno_username
