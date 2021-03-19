@@ -8,4 +8,4 @@ style:
   bottom: 7%
   right: 0%
 state_badge_css: /local/custom-ui/state-badge.css?v=0.0.14
-extra_css: /local/custom-ui/beam.css?v=0.0.1
+extra_css: /local/custom-ui/beam.css?v=0.0.2

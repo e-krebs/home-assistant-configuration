@@ -1,3 +1,6 @@
 ha-icon[data-domain="media_player"][data-state="paused"] {
   color: var(--state-icon-off-color);
 }
+ha-icon[data-domain="media_player"][data-state="idle"] {
+  color: var(--state-icon-off-color);
+}
