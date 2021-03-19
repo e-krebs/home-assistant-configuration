@@ -31,11 +31,11 @@ homeassistant:
 
     device_tracker.manu_wifi:
       icon: mdi:cellphone-wireless
-      friendly_name: pixel 4 (wifi)
+      friendly_name: pixel 5 (wifi)
     
     device_tracker.phone_manu:
       icon: mdi:cellphone
-      friendly_name: pixel 4
+      friendly_name: pixel 5
 
     person.manu:
       icon: mdi:human-male
