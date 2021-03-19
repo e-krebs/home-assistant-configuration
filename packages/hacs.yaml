@@ -9,7 +9,7 @@ automation:
         entity_id: sensor.hacs
         above: 0
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: '{{ states(''sensor.hacs'') }} {{ state_attr(''sensor.hacs'', ''unit_of_measurement'') }} on Community Store'
           message: >

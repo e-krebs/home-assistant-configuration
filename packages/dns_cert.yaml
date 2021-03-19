@@ -52,7 +52,7 @@ automation:
     platform: state
     entity_id: sensor.compagnie_krebs_tech
   action:
-    - service: notify.mobile_app_pixel_4
+    - service: notify.mobile_app_phone_manu
       data:
         title: "le dns a été mis à jour"
         message: '{{ states(''sensor.compagnie_krebs_tech'') }}'
@@ -73,7 +73,7 @@ automation:
            trigger.from_state.state != 'unavailable' and trigger.to_state.state != 'unavailable' and
            trigger.to_state.state != trigger.from_state.state }}
   action:
-    - service: notify.mobile_app_pixel_4
+    - service: notify.mobile_app_phone_manu
       data:
         title: "l'adresse ip publique a changée"
         message: '{{ states(''sensor.public_ip'') }}'

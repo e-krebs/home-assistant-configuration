@@ -36,7 +36,7 @@ automation:
       condition: template
       value_template: '{{ states(''sensor.current_version'') != states(''sensor.release_version'') }}'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: 'nouvelle version publiée : {{ states(''sensor.release_version'') }}'
           message: 'version actuelle : {{ states(''sensor.current_version'') }}'
@@ -52,7 +52,7 @@ automation:
       entity_id: binary_sensor.updater
       to: 'on'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: 'mise à jour disponible ({{ states(''sensor.release_version'') }})'
           message: 'version actuelle : {{ states(''sensor.current_version'') }}'

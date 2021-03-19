@@ -51,7 +51,7 @@ automation:
       to : "on"
     action:
       - delay: 00:00:5
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: "prise de la machine à laver allum\xE9e"
           data:
@@ -69,7 +69,7 @@ automation:
       to : "off"
     action:
       - delay: 0:0:5
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: "prise de la machine à laver \xE9teinte"
           data:
@@ -116,7 +116,7 @@ automation:
         data_template:
           entity_id: input_select.machine_a_laver
           option: 'idle'
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: machine à laver allumée
           data:
@@ -144,7 +144,7 @@ automation:
         data_template:
           entity_id: input_select.machine_a_laver
           option: 'on'
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: machine en cours
           data:
@@ -168,7 +168,7 @@ automation:
         data_template:
           entity_id: input_select.machine_a_laver
           option: 'done'
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: machine terminée
           message: merci de vider la machine

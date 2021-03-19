@@ -27,7 +27,7 @@ automation:
       - condition: template
         value_template: '{{ as_timestamp(utcnow()) - as_timestamp(state_attr(''vacuum.cl4p_tp'', ''clean_stop'')+''+00:00'') > 24*3600 }}'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: 'faire le ménage ?'
           message: >
@@ -51,7 +51,7 @@ automation:
       - condition: template
         value_template: '{{ as_timestamp(utcnow()) - as_timestamp(state_attr(''vacuum.cl4p_tp'', ''clean_stop'')+''+00:00'') > 5*24*3600 }}'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: 'faire le ménage ?'
           message: >
@@ -71,7 +71,7 @@ automation:
       entity_id: vacuum.cl4p_tp
       to: 'cleaning'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: 'ménage en cours'
           data:
@@ -94,7 +94,7 @@ automation:
       - condition: template
         value_template:  '{{ trigger.from_state.state != ''unknown'' }}'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: 'cl4p-tp a fini son ménage: {{ states(''vacuum.cl4p_tp'') }}'
           message: >

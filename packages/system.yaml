@@ -47,7 +47,7 @@ automation:
       platform: homeassistant
       event: start
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: "home assistant a démarré 😀"
           message: 'version {{ states(''sensor.current_version'') }}'
@@ -67,7 +67,7 @@ automation:
       platform: homeassistant
       event: shutdown
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: "home assistant s'éteint 😭"
           message: 'version {{ states(''sensor.current_version'') }}'
@@ -86,7 +86,7 @@ automation:
       for:
         hours: 1
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: 'alerte base de donnée'
           message: 'taille actuelle : {{ states(''sensor.home_assistant_v2_db'') }} MB'

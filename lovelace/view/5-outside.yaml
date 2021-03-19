@@ -10,7 +10,7 @@ cards:
     default_zoom: 15
     aspect_ratio: 4x3
     entities:
-      - device_tracker.pixel_4
+      - device_tracker.phone_manu
   - type: iframe
     title: cas en cours
     aspect_ratio: '1.3'

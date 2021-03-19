@@ -81,7 +81,7 @@ automation:
         entity_id: vacuum.cl4p_tp
         state: 'docked'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           title: "possible intrusion"
           message: 'activité détectée à {{ as_timestamp(states.input_select.home_activity.last_updated)  | timestamp_custom(''%H:%M'') }} ({{ states(''input_select.home_activity'') }})'

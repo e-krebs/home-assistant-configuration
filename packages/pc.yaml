@@ -93,7 +93,7 @@ automation:
       - condition: template
         value_template: '{{ not is_state(''person.manu'', ''home'')}}'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: "prise du pc allum\xE9e"
           data:
@@ -129,7 +129,7 @@ automation:
         value_template: '{{ not is_state(''person.manu'', ''home'')}}'
     action:
       - delay: 0:0:10
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: "prise du pc \xE9teinte"
           data:
@@ -151,7 +151,7 @@ automation:
       - condition: template
         value_template: '{{ not is_state(''person.manu'', ''home'')}}'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: le pc est allumé
           data:
@@ -175,7 +175,7 @@ automation:
       - condition: template
         value_template: '{{ not is_state(''person.manu'', ''home'')}}'
     action:
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: le pc est allumé
           data:
@@ -219,7 +219,7 @@ script:
   pc_not_off:
     alias: pc not off (dependency)
     sequence:
-    - service: notify.mobile_app_pixel_4
+    - service: notify.mobile_app_phone_manu
       data:
         title: le pc n'est pas éteint !
         message: 'consommation : {{ states(''sensor.pc_power'')}} W'

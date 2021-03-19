@@ -72,7 +72,7 @@ automation:
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.weather_timetoopen_triggered
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_phone_manu
         data:
           message: "il est temps d'ouvrir les fenêtres !"
           data:
