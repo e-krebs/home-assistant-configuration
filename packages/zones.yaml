@@ -4,11 +4,11 @@ zone:
     longitude: !secret algo_lon
     radius: !secret zone_radius
     icon: mdi:timer
-  - name: bluesyflat
-    latitude: !secret bluesy_lat
-    longitude: !secret bluesy_lon
+  - name: new_home
+    latitude: !secret new_home_lat
+    longitude: !secret new_home_lon
     radius: !secret zone_radius
-    icon: mdi:music
+    icon: mdi:home-modern
   - name: home
     latitude: !secret home_lat
     longitude: !secret home_lon

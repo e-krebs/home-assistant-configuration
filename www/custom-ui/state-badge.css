@@ -34,6 +34,6 @@ ha-icon[data-domain="person"][data-state]::after {
 ha-icon[data-domain="person"][data-state="algolia"]::after {
   content:url(/local/ui-lovelace/algolia.svg);
 }
-ha-icon[data-domain="person"][data-state="bluesyflat"]::after {
-  content:url(/local/ui-lovelace/bluesyflat.svg);
+ha-icon[data-domain="person"][data-state="new_home"]::after {
+  content:url(/local/ui-lovelace/new_home.svg);
 }
