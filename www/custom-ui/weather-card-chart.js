@@ -295,8 +295,11 @@ class WeatherCardChart extends Polymer.Element {
   }
 
   drawChart() {
-    var data = this.weatherObj.attributes ? this.weatherObj.attributes.forecast.slice(0,9) : [];
-    var locale = this._hass ? this._hass.selectedLanguage || this._hass.language : navigator.language;
+    if (!this.weatherObj.attributes || !this._hass) {
+      return [];
+    }
+    var data = this.weatherObj.attributes.forecast.slice(0, 9);
+    var locale = this._hass.selectedLanguage || this._hass.language;
     var tempUnit = this._hass.config.unit_system.temperature;
     var lengthUnit = this._hass.config.unit_system.length;
     var precipUnit = lengthUnit === 'km' ? this.ll('uPrecip') : 'in';
