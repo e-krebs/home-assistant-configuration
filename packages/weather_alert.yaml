@@ -17,21 +17,21 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.weather_timetoopen_triggered
 
-  - id: over_20_inside
-    alias: over 20°C (inside)
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.home_temperature
-      above: 20
-      for:
-        minutes: 5
-    condition:
-      - condition: state
-        entity_id: input_boolean.over_20_inside
-        state: 'off'
-    action:
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.over_20_inside
+  # - id: over_20_inside
+  #   alias: over 20°C (inside)
+  #   trigger:
+  #     platform: numeric_state
+  #     entity_id: sensor.home_temperature
+  #     above: 20
+  #     for:
+  #       minutes: 5
+  #   condition:
+  #     - condition: state
+  #       entity_id: input_boolean.over_20_inside
+  #       state: 'off'
+  #   action:
+  #     - service: input_boolean.turn_on
+  #       entity_id: input_boolean.over_20_inside
 
   - id: over_25_outside
     alias: over 25°C (outside)
@@ -49,33 +49,33 @@ automation:
       - service: input_boolean.turn_on
         entity_id: input_boolean.over_25_outside
 
-  - id: time_to_open
-    alias: time to open!
-    trigger:
-      platform: template
-      value_template: >
-        {{ states('sensor.home_temperature') | float > states('sensor.dark_sky_temperature') | float }}
-      for:
-        minutes: 5
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.over_20_inside
-          state: 'on'
-        - condition: state
-          entity_id: input_boolean.over_25_outside
-          state: 'on'
-        - condition: state
-          entity_id: input_boolean.weather_timetoopen_triggered
-          state: 'off'
-    action:
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.weather_timetoopen_triggered
-      - service: notify.mobile_app_phone_manu
-        data:
-          message: "il est temps d'ouvrir les fenêtres !"
-          data:
-            icon: /local/notification/time_to_open.png?v=0
-            url: !secret endpoint_hassio
-            tag: 'time_to_open'
+  # - id: time_to_open
+  #   alias: time to open!
+  #   trigger:
+  #     platform: template
+  #     value_template: >
+  #       {{ states('sensor.home_temperature') | float > states('sensor.dark_sky_temperature') | float }}
+  #     for:
+  #       minutes: 5
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #       - condition: state
+  #         entity_id: input_boolean.over_20_inside
+  #         state: 'on'
+  #       - condition: state
+  #         entity_id: input_boolean.over_25_outside
+  #         state: 'on'
+  #       - condition: state
+  #         entity_id: input_boolean.weather_timetoopen_triggered
+  #         state: 'off'
+  #   action:
+  #     - service: input_boolean.turn_on
+  #       entity_id: input_boolean.weather_timetoopen_triggered
+  #     - service: notify.mobile_app_phone_manu
+  #       data:
+  #         message: "il est temps d'ouvrir les fenêtres !"
+  #         data:
+  #           icon: /local/notification/time_to_open.png?v=0
+  #           url: !secret endpoint_hassio
+  #           tag: 'time_to_open'
