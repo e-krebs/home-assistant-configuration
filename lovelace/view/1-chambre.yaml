@@ -3,12 +3,12 @@ icon: mdi:bed
 cards:
   - type: vertical-stack
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.chambre_group
-          - type: light
-            entity: light.grande_chambre
+      # - type: horizontal-stack
+      #   cards:
+      #     - type: light
+      #       entity: light.chambre_group
+      #     - type: light
+      #       entity: light.grande_chambre
       - type: horizontal-stack
         cards:
           - type: custom:vertical-stack-in-card

@@ -40,27 +40,27 @@ homeassistant:
     person.manu:
       icon: mdi:human-male
 
-automation:
-  - id: light_while_out
-    alias: lights while out
-    trigger:
-      platform: state
-      entity_id: binary_sensor.manu
-      from: 'on'
-      to: 'off'
-      for:
-        minutes: 5
-    condition:
-      - condition: state
-        entity_id: light.all
-        state: 'on'
-    action:
-      - service: notify.mobile_app_phone_manu
-        data:
-          message: 'lumière allumée'
-          data:
-            icon: /local/notification/light-on.png
-            url: !secret endpoint_hassio
-            actions:
-            - title: éteindre
-              action: all_lights_off
+# automation:
+#   - id: light_while_out
+#     alias: lights while out
+#     trigger:
+#       platform: state
+#       entity_id: binary_sensor.manu
+#       from: 'on'
+#       to: 'off'
+#       for:
+#         minutes: 5
+#     condition:
+#       - condition: state
+#         entity_id: light.all
+#         state: 'on'
+#     action:
+#       - service: notify.mobile_app_phone_manu
+#         data:
+#           message: 'lumière allumée'
+#           data:
+#             icon: /local/notification/light-on.png
+#             url: !secret endpoint_hassio
+#             actions:
+#             - title: éteindre
+#               action: all_lights_off

@@ -13,82 +13,82 @@ input_select:
       - 'dimmer_chambre'
       - 'dimmer_salon'
 
-homeassistant:
-  customize:
-    input_select.home_activity:
-      friendly_name: dernière activité
-      icon: mdi:run-fast
+# homeassistant:
+#   customize:
+#     input_select.home_activity:
+#       friendly_name: dernière activité
+#       icon: mdi:run-fast
 
-automation:
-  - id: motion_activity
-    alias: 'activity: motion'
-    mode: parallel
-    trigger:
-      platform: state
-      entity_id:
-        - binary_sensor.capteur_salon_motion
-        - binary_sensor.capteur_cuisine_motion
-        - binary_sensor.capteur_couloir_motion
-      to: 'on'
-    condition:
-      - condition: template
-        value_template: '{{ states(''vacuum.cl4p_tp'') != ''cleaning'' }}'
-    action:
-      - service: input_select.select_option
-        data_template:
-          entity_id: input_select.home_activity
-          option: >
-            {% if trigger.entity_id == 'binary_sensor.capteur_salon_motion' %}
-              salon
-            {% elif trigger.entity_id == 'binary_sensor.capteur_cuisine_motion' %}
-              cuisine
-            {% elif trigger.entity_id == 'binary_sensor.capteur_couloir_motion'  %}
-              couloir
-            {% endif %}
-  - id: dimmer_activity
-    alias: 'activity: dimmer'
-    trigger:
-      platform: state
-      entity_id:
-        - sensor.dimmer_chambre
-        - sensor.dimmer_salon
-    condition:
-      - condition: template
-        value_template: '{{ trigger.to_state.state != ''unknown'' }}'
-    action:
-      - service: input_select.select_option
-        data_template:
-          entity_id: input_select.home_activity
-          option: >
-            {% if trigger.entity_id == 'sensor.dimmer_chambre' %}
-              dimmer_chambre
-            {% elif trigger.entity_id == 'sensor.dimmer_salon' %}
-              dimmer_salon
-            {% endif %}
-  #intrusion
-  - id: intrusion_check
-    alias: intrusion check
-    trigger:
-      platform: state
-      entity_id: input_select.home_activity
-    condition:
-      - condition: state
-        entity_id: binary_sensor.manu
-        state: 'off'
-        for:
-          minutes: 2
-      - condition: state
-        entity_id: vacuum.cl4p_tp
-        state: 'docked'
-    action:
-      - service: notify.mobile_app_phone_manu
-        data:
-          title: "possible intrusion"
-          message: 'activité détectée à {{ as_timestamp(states.input_select.home_activity.last_updated)  | timestamp_custom(''%H:%M'') }} ({{ states(''input_select.home_activity'') }})'
-          data:
-            icon: /local/notification/map-marker-radius.png
-            url: !secret endpoint_hassio
-            tag: 'intrusion'
-            actions:
-            - title: stop 30min
-              action: intrusion_check_disable
+# automation:
+#   - id: motion_activity
+#     alias: 'activity: motion'
+#     mode: parallel
+#     trigger:
+#       platform: state
+#       entity_id:
+#         - binary_sensor.capteur_salon_motion
+#         - binary_sensor.capteur_cuisine_motion
+#         - binary_sensor.capteur_couloir_motion
+#       to: 'on'
+#     condition:
+#       - condition: template
+#         value_template: '{{ states(''vacuum.cl4p_tp'') != ''cleaning'' }}'
+#     action:
+#       - service: input_select.select_option
+#         data_template:
+#           entity_id: input_select.home_activity
+#           option: >
+#             {% if trigger.entity_id == 'binary_sensor.capteur_salon_motion' %}
+#               salon
+#             {% elif trigger.entity_id == 'binary_sensor.capteur_cuisine_motion' %}
+#               cuisine
+#             {% elif trigger.entity_id == 'binary_sensor.capteur_couloir_motion'  %}
+#               couloir
+#             {% endif %}
+#   - id: dimmer_activity
+#     alias: 'activity: dimmer'
+#     trigger:
+#       platform: state
+#       entity_id:
+#         - sensor.dimmer_chambre
+#         - sensor.dimmer_salon
+#     condition:
+#       - condition: template
+#         value_template: '{{ trigger.to_state.state != ''unknown'' }}'
+#     action:
+#       - service: input_select.select_option
+#         data_template:
+#           entity_id: input_select.home_activity
+#           option: >
+#             {% if trigger.entity_id == 'sensor.dimmer_chambre' %}
+#               dimmer_chambre
+#             {% elif trigger.entity_id == 'sensor.dimmer_salon' %}
+#               dimmer_salon
+#             {% endif %}
+#   intrusion
+#   - id: intrusion_check
+#     alias: intrusion check
+#     trigger:
+#       platform: state
+#       entity_id: input_select.home_activity
+#     condition:
+#       - condition: state
+#         entity_id: binary_sensor.manu
+#         state: 'off'
+#         for:
+#           minutes: 2
+#       - condition: state
+#         entity_id: vacuum.cl4p_tp
+#         state: 'docked'
+#     action:
+#       - service: notify.mobile_app_phone_manu
+#         data:
+#           title: "possible intrusion"
+#           message: 'activité détectée à {{ as_timestamp(states.input_select.home_activity.last_updated)  | timestamp_custom(''%H:%M'') }} ({{ states(''input_select.home_activity'') }})'
+#           data:
+#             icon: /local/notification/map-marker-radius.png
+#             url: !secret endpoint_hassio
+#             tag: 'intrusion'
+#             actions:
+#             - title: stop 30min
+#               action: intrusion_check_disable

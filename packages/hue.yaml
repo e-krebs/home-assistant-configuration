@@ -1,72 +1,72 @@
-recorder:
-  include:
-    entities:
-      - sensor.capteur_couloir_temperature
-      - sensor.capteur_cuisine_temperature
-      - sensor.capteur_salon_temperature
-      - sensor.home_temperature
+# recorder:
+#   include:
+#     entities:
+#       - sensor.capteur_couloir_temperature
+#       - sensor.capteur_cuisine_temperature
+#       - sensor.capteur_salon_temperature
+#       - sensor.home_temperature
 
-sensor:
-  - platform: min_max
-    entity_ids:
-      - sensor.capteur_couloir_temperature
-      - sensor.capteur_cuisine_temperature
-      - sensor.capteur_salon_temperature
-    type: mean
-    name: home_temperature
-    round_digits: 2
+# sensor:
+#   - platform: min_max
+#     entity_ids:
+#       - sensor.capteur_couloir_temperature
+#       - sensor.capteur_cuisine_temperature
+#       - sensor.capteur_salon_temperature
+#     type: mean
+#     name: home_temperature
+#     round_digits: 2
 
-light:
-  - platform: group
-    name: all
-    entities:
-      - light.bibliotheque
-      - light.canape
-      - light.entree_chambre
-      - light.couloir
-      - light.couloir_fond
-      - light.etagere_cuisine
-      - light.grande_chambre
-      - light.lit
-      - light.plafond_cuisine
-      - light.tele
-  - platform: group
-    name: chambre_group
-    entities:
-      - light.grande_chambre
-      - light.lit
-      - light.entree_chambre
-  - platform: group
-    name: couloir_group
-    entities:
-      - light.couloir
-      - light.couloir_fond
-  - platform: group
-    name: cuisine_group
-    entities:
-      - light.plafond_cuisine
-      - light.etagere_cuisine
-  - platform: group
-    name: salon_group
-    entities:
-      - light.bibliotheque
-      - light.canape
-      - light.tele
+# light:
+#   - platform: group
+#     name: all
+#     entities:
+#       - light.bibliotheque
+#       - light.canape
+#       - light.entree_chambre
+#       - light.couloir
+#       - light.couloir_fond
+#       - light.etagere_cuisine
+#       - light.grande_chambre
+#       - light.lit
+#       - light.plafond_cuisine
+#       - light.tele
+#   - platform: group
+#     name: chambre_group
+#     entities:
+#       - light.grande_chambre
+#       - light.lit
+#       - light.entree_chambre
+#   - platform: group
+#     name: couloir_group
+#     entities:
+#       - light.couloir
+#       - light.couloir_fond
+#   - platform: group
+#     name: cuisine_group
+#     entities:
+#       - light.plafond_cuisine
+#       - light.etagere_cuisine
+#   - platform: group
+#     name: salon_group
+#     entities:
+#       - light.bibliotheque
+#       - light.canape
+#       - light.tele
 
-homeassistant:
-  customize:
-    sensor.home_temperature:
-      friendly_name: température appartement
-      icon: mdi:home-thermometer-outline
+# homeassistant:
+#   customize:
+#     sensor.home_temperature:
+#       friendly_name: température appartement
+#       icon: mdi:home-thermometer-outline
 
-    light.chambre_group:
-      friendly_name: lumières chambre
+#     light.chambre_group:
+#       friendly_name: lumières chambre
 
-    light.salon_group:
-      friendly_name: lumières salon
+#     light.salon_group:
+#       friendly_name: lumières salon
 
-    light.couloir_group:
-      friendly_name: lumières couloir
+#     light.couloir_group:
+#       friendly_name: lumières couloir
 
-    light.cuisine_group:
-      friendly_name: lumières cuisine
+#     light.cuisine_group:
+#       friendly_name: lumières cuisine

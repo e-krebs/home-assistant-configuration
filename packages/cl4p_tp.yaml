@@ -97,12 +97,12 @@ automation:
       - service: notify.mobile_app_phone_manu
         data:
           title: 'cl4p-tp a fini son ménage: {{ states(''vacuum.cl4p_tp'') }}'
-          message: >
-            {% if is_state('light.all', 'on') %}
-              lumières allumées
-            {% else %}
-              lumières éteintes
-            {% endif %}
+          # message: >
+          #   {% if is_state('light.all', 'on') %}
+          #     lumières allumées
+          #   {% else %}
+          #     lumières éteintes
+          #   {% endif %}
           data:
             icon: /local/notification/vacuum-done.png
             url: !secret endpoint_bedroom
@@ -110,5 +110,5 @@ automation:
             actions:
             - title: nettoyer
               action: vacuum_clean
-            - title: éteindre lumières
-              action: all_lights_off
+            # - title: éteindre lumières
+            #   action: all_lights_off
