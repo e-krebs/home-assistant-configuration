@@ -3,20 +3,20 @@ icon: mdi:home
 cards:
   - type: vertical-stack
     cards:
-    - type: custom:mini-media-player
-      entity: media_player.cuisine_universal
-      artwork: cover
+    # - type: custom:mini-media-player
+    #   entity: media_player.cuisine_universal
+    #   artwork: cover
     # - type: horizontal-stack
     #   cards:
     #     - type: light
     #       entity: light.cuisine_group
     #     - type: light
     #       entity: light.couloir_group
-    - type: horizontal-stack
-      cards:
-        - type: custom:mini-media-player
-          entity: media_player.gobelin_universal
-          artwork: cover
+    # - type: horizontal-stack
+    #   cards:
+    #     - type: custom:mini-media-player
+    #       entity: media_player.gobelin_universal
+    #       artwork: cover
     - type: glance
       entities:
         - entity: sensor.machine_a_laver

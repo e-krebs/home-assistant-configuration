@@ -1,33 +1,33 @@
-media_player:
-  - platform: universal
-    name: bureau_universal
-    children:
-      - media_player.bureau
-      - media_player.appartement
-    state_template: >
-      {% if is_state('media_player.bureau', 'off') and is_state('media_player.appartement', 'off') %}
-        off
-      {% elif is_state('media_player.bureau', 'off') %}
-        {{ states('media_player.appartement') }}
-      {% else %}
-        {{ states('media_player.bureau') }}
-      {% endif %}
-    commands:
-      turn_on:
-        service: media_player.turn_on
-        data:
-          entity_id: media_player.bureau
-      turn_off:
-        service: media_player.turn_off
-        data:
-          entity_id: media_player.bureau
+# media_player:
+#   - platform: universal
+#     name: bureau_universal
+#     children:
+#       - media_player.bureau
+#       - media_player.appartement
+#     state_template: >
+#       {% if is_state('media_player.bureau', 'off') and is_state('media_player.appartement', 'off') %}
+#         off
+#       {% elif is_state('media_player.bureau', 'off') %}
+#         {{ states('media_player.appartement') }}
+#       {% else %}
+#         {{ states('media_player.bureau') }}
+#       {% endif %}
+#     commands:
+#       turn_on:
+#         service: media_player.turn_on
+#         data:
+#           entity_id: media_player.bureau
+#       turn_off:
+#         service: media_player.turn_off
+#         data:
+#           entity_id: media_player.bureau
 
-homeassistant:
-  customize:
-    media_player.bureau:
-      icon: mdi:speaker
-      friendly_name: bureau
+# homeassistant:
+#   customize:
+#     media_player.bureau:
+#       icon: mdi:speaker
+#       friendly_name: bureau
 
-    media_player.bureau_universal:
-      icon: mdi:monitor-speaker
-      friendly_name: bureau
+#     media_player.bureau_universal:
+#       icon: mdi:monitor-speaker
+#       friendly_name: bureau

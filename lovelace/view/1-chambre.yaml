@@ -51,11 +51,11 @@ cards:
               action: toggle
           - entity: sensor.pc_power
             name: ''
-      - type: horizontal-stack
-        cards:
-          - type: custom:mini-media-player
-            entity: media_player.screen
-            artwork: cover
-          - type: custom:mini-media-player
-            entity: media_player.bureau_universal
-            artwork: cover
+      # - type: horizontal-stack
+      #   cards:
+      #     - type: custom:mini-media-player
+      #       entity: media_player.screen
+      #       artwork: cover
+      #     - type: custom:mini-media-player
+      #       entity: media_player.bureau_universal
+      #       artwork: cover
