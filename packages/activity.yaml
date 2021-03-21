@@ -13,11 +13,11 @@ input_select:
       - 'dimmer_chambre'
       - 'dimmer_salon'
 
-# homeassistant:
-#   customize:
-#     input_select.home_activity:
-#       friendly_name: dernière activité
-#       icon: mdi:run-fast
+homeassistant:
+  customize:
+    input_select.home_activity:
+      friendly_name: dernière activité
+      icon: mdi:run-fast
 
 # automation:
 #   - id: motion_activity
