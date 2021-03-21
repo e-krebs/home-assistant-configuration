@@ -1,89 +1,89 @@
-homeassistant:
-  customize:
-    media_player.ps4_universal:
-      icon: mdi:sony-playstation
-      friendly_name: ps4
+# homeassistant:
+#   customize:
+#     media_player.ps4_universal:
+#       icon: mdi:sony-playstation
+#       friendly_name: ps4
 
-    script.ps4_on:
-      friendly_name: allumer la ps4
-      icon: mdi:sony-playstation
-      can_cancel: false
+#     script.ps4_on:
+#       friendly_name: allumer la ps4
+#       icon: mdi:sony-playstation
+#       can_cancel: false
 
-    script.ps4_off:
-      friendly_name: éteindre la ps4
-      icon: mdi:sleep
-      can_cancel: false
+#     script.ps4_off:
+#       friendly_name: éteindre la ps4
+#       icon: mdi:sleep
+#       can_cancel: false
 
-media_player:
-  - platform: universal
-    name: ps4_universal
-    children:
-      - media_player.ps4
-      - media_player.beam
-    state_template: >
-      {% if (is_state('media_player.ps4','off') or is_state('media_player.ps4', 'standby')) and states('sensor.tv_power') | float | round(1) < 0.4 %}
-        off
-      {% elif states('sensor.tv_power') | float | round(1) < 0.4 %}
-        tv off
-      {% elif is_state('media_player.ps4', 'standby') %}
-        off
-      {% else %}
-        {{ states('media_player.ps4') }}
-      {% endif %}
-    commands:
-      turn_on:
-        service: script.ps4_on
-      turn_off:
-        service: script.ps4_off
-      volume_set:
-        service: media_player.volume_set
-        data_template:
-          entity_id: media_player.beam
-          volume_level: '{{ volume_level }}'
-      volume_up:
-        service: media_player.volume_up
-        data:
-          entity_id: media_player.beam
-      volume_down:
-        service: media_player.volume_down
-        data:
-          entity_id: media_player.beam
-      volume_mute:
-        service: media_player.volume_mute
-        data_template:
-          entity_id: media_player.beam
-          is_volume_muted: '{{ is_volume_muted }}'
-      select_source:
-        service: media_player.select_source
-        data_template:
-          entity_id: media_player.ps4
-          source: '{{ source }}'
-    attributes:
-      is_volume_muted: media_player.beam|is_volume_muted
-      volume_level: media_player.beam|volume_level
-      source: media_player.ps4|source
-      source_list: media_player.ps4|source_list
+# media_player:
+#   - platform: universal
+#     name: ps4_universal
+#     children:
+#       - media_player.ps4
+#       - media_player.beam
+#     state_template: >
+#       {% if (is_state('media_player.ps4','off') or is_state('media_player.ps4', 'standby')) and states('sensor.tv_power') | float | round(1) < 0.4 %}
+#         off
+#       {% elif states('sensor.tv_power') | float | round(1) < 0.4 %}
+#         tv off
+#       {% elif is_state('media_player.ps4', 'standby') %}
+#         off
+#       {% else %}
+#         {{ states('media_player.ps4') }}
+#       {% endif %}
+#     commands:
+#       turn_on:
+#         service: script.ps4_on
+#       turn_off:
+#         service: script.ps4_off
+#       volume_set:
+#         service: media_player.volume_set
+#         data_template:
+#           entity_id: media_player.beam
+#           volume_level: '{{ volume_level }}'
+#       volume_up:
+#         service: media_player.volume_up
+#         data:
+#           entity_id: media_player.beam
+#       volume_down:
+#         service: media_player.volume_down
+#         data:
+#           entity_id: media_player.beam
+#       volume_mute:
+#         service: media_player.volume_mute
+#         data_template:
+#           entity_id: media_player.beam
+#           is_volume_muted: '{{ is_volume_muted }}'
+#       select_source:
+#         service: media_player.select_source
+#         data_template:
+#           entity_id: media_player.ps4
+#           source: '{{ source }}'
+#     attributes:
+#       is_volume_muted: media_player.beam|is_volume_muted
+#       volume_level: media_player.beam|volume_level
+#       source: media_player.ps4|source
+#       source_list: media_player.ps4|source_list
 
-script:
-  ps4_off:
-    alias: ps4 off
-    sequence:
-    - service: media_player.turn_off
-      data:
-        entity_id: media_player.ps4
-    - condition: state
-      entity_id: media_player.shield_cast
-      state: 'off'
-    - condition: state
-      entity_id: media_player.shield_tv
-      state: 'off'
-    - service: script.tv_off
+# script:
+#   ps4_off:
+#     alias: ps4 off
+#     sequence:
+#     - service: media_player.turn_off
+#       data:
+#         entity_id: media_player.ps4
+#     - condition: state
+#       entity_id: media_player.shield_cast
+#       state: 'off'
+#     - condition: state
+#       entity_id: media_player.shield_tv
+#       state: 'off'
+#     - service: script.tv_off
 
-  ps4_on:
-    alias: ps4 on
-    sequence:
-    - service: media_player.turn_on
-      data:
-        entity_id: media_player.ps4
-    - service: script.tv_on
-    - service: script.tv_input_console
+#   ps4_on:
+#     alias: ps4 on
+#     sequence:
+#     - service: media_player.turn_on
+#       data:
+#         entity_id: media_player.ps4
+#     - service: script.tv_on
+#     - service: script.tv_input_console
