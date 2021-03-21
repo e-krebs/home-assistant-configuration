@@ -46,39 +46,39 @@ automation:
       - service: automation.turn_on
         entity_id: automation.intrusion_check
 
-  #clic sur 'nettoyer' (notify_run_vaccum)
-  - id: app_start_cleaning
-    alias: (app) start cleaning
-    trigger:
-      platform: event
-      event_type: mobile_app_notification_action
-      event_data:
-        action: vacuum_clean
-    action:
-      - service: vacuum.start
-        entity_id: vacuum.cl4p_tp
+  # #clic sur 'nettoyer' (notify_run_vaccum)
+  # - id: app_start_cleaning
+  #   alias: (app) start cleaning
+  #   trigger:
+  #     platform: event
+  #     event_type: mobile_app_notification_action
+  #     event_data:
+  #       action: vacuum_clean
+  #   action:
+  #     - service: vacuum.start
+  #       entity_id: vacuum.cl4p_tp
 
 
-  #clic sur 'nettoyer' (notify_run_vaccum)
-  - id: app_stop_cleaning
-    alias: (app) stop cleaning
-    trigger:
-      platform: event
-      event_type: mobile_app_notification_action
-      event_data:
-        action: vacuum_stop
-    action:
-      - service: vacuum.stop
-        entity_id: vacuum.cl4p_tp
+  # #clic sur 'nettoyer' (notify_run_vaccum)
+  # - id: app_stop_cleaning
+  #   alias: (app) stop cleaning
+  #   trigger:
+  #     platform: event
+  #     event_type: mobile_app_notification_action
+  #     event_data:
+  #       action: vacuum_stop
+  #   action:
+  #     - service: vacuum.stop
+  #       entity_id: vacuum.cl4p_tp
 
-  #clic sur 'nettoyer' (notify_run_vaccum)
-  - id: app_dock_vaccum
-    alias: (app) dock vacuum
-    trigger:
-      platform: event
-      event_type: mobile_app_notification_action
-      event_data:
-        action: vacuum_dock
-    action:
-      - service: vacuum.return_to_base
-        entity_id: vacuum.cl4p_tp
+  # #clic sur 'nettoyer' (notify_run_vaccum)
+  # - id: app_dock_vaccum
+  #   alias: (app) dock vacuum
+  #   trigger:
+  #     platform: event
+  #     event_type: mobile_app_notification_action
+  #     event_data:
+  #       action: vacuum_dock
+  #   action:
+  #     - service: vacuum.return_to_base
+  #       entity_id: vacuum.cl4p_tp

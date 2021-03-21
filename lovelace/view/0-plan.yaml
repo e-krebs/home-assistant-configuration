@@ -80,13 +80,13 @@ cards:
       #     legend: false
       #   entities:
       #       - sensor.home_temperature
-      - type: custom:vertical-stack-in-card
-        cards:
-          - type: markdown
-            theme: markdown
-            content: >
-              <center>
-                il y a {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 / 24) | round(0, "floor") }} jour(s) et {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 % 24) | round(0, "floor") }} heure(s)
-              </center>
-          - type: picture-entity
-            entity: camera.cl4p_tp_cleaning_map
+      # - type: custom:vertical-stack-in-card
+      #   cards:
+      #     - type: markdown
+      #       theme: markdown
+      #       content: >
+      #         <center>
+      #           il y a {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 / 24) | round(0, "floor") }} jour(s) et {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 % 24) | round(0, "floor") }} heure(s)
+      #         </center>
+      #     - type: picture-entity
+      #       entity: camera.cl4p_tp_cleaning_map
