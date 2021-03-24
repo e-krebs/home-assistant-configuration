@@ -17,6 +17,12 @@ cards:
     #     - type: custom:mini-media-player
     #       entity: media_player.gobelin_universal
     #       artwork: cover
+    - type: horizontal-stack
+      cards:
+        - type: entities
+          entities:
+            - switch.bouilloire
+            - binary_sensor.bouilloire_on_base
     - type: glance
       entities:
         - entity: sensor.machine_a_laver
