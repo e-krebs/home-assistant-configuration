@@ -82,7 +82,7 @@ automation:
     trigger:
       platform: numeric_state
       entity_id: sensor.laver_power
-      below: 0.55
+      below: 0.7
     condition:
       condition: or
       conditions:
@@ -111,7 +111,7 @@ automation:
     trigger:
       platform: numeric_state
       entity_id: sensor.laver_power
-      above: 0.55
+      above: 0.7
     condition:
       - condition: state
         entity_id: input_select.machine_a_laver
@@ -162,7 +162,7 @@ automation:
     trigger:
       platform: numeric_state
       entity_id: sensor.laver_power
-      above: 0.55
+      above: 0.7
       below: 2.0
     condition:
       - condition: state
