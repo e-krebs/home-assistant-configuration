@@ -98,7 +98,7 @@ automation:
           message: "prise du pc allum\xE9e"
           data:
             icon: /local/notification/power-plug-on.png?v=0
-            url: !secret endpoint_hassio
+            clickAction: !secret endpoint_hassio
             tag: 'pc_switch'
             actions:
             - title: éteindre
@@ -134,7 +134,7 @@ automation:
           message: "prise du pc \xE9teinte"
           data:
             icon: /local/notification/power-plug-off.png?v=0
-            url: !secret endpoint_hassio
+            clickAction: !secret endpoint_hassio
             tag: 'pc_switch'
 
   # timers
@@ -156,7 +156,7 @@ automation:
           message: le pc est allumé
           data:
             icon: /local/notification/desktop-on.png
-            url: !secret endpoint_hassio
+            clickAction: !secret endpoint_hassio
             tag: 'pc_switch'
             actions:
             - title: éteindre
@@ -180,7 +180,7 @@ automation:
           message: le pc est allumé
           data:
             icon: /local/notification/desktop-on.png
-            url: !secret endpoint_hassio
+            clickAction: !secret endpoint_hassio
             tag: 'pc_switch'
             actions:
             - title: éteindre
@@ -225,7 +225,7 @@ script:
         message: 'consommation : {{ states(''sensor.pc_power'')}} W'
         data:
           icon: /local/notification/power-plug.png
-          url: !secret endpoint_hassio
+          clickAction: !secret endpoint_hassio
           tag: 'pc_switch'
           actions:
           - title: éteindre

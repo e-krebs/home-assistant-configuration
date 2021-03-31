@@ -42,7 +42,7 @@ automation:
           message: 'version actuelle : {{ states(''sensor.current_version'') }}'
           data:
             icon: /local/notification/tag-text-outline.png
-            url: !secret endpoint_hassio_dashboard
+            clickAction: !secret endpoint_hassio_dashboard
             tag: 'version'
 
   - id: update_available
@@ -58,5 +58,5 @@ automation:
           message: 'version actuelle : {{ states(''sensor.current_version'') }}'
           data:
             icon: /local/notification/cloud-download.png
-            url: !secret endpoint_hassio_dashboard
+            clickAction: !secret endpoint_hassio_dashboard
             tag: 'update'
