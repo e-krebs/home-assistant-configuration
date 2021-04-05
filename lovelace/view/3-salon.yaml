@@ -7,18 +7,18 @@ cards:
         cards:
           - type: vertical-stack
             cards:
-              # - type: custom:mini-media-player
-              #   entity: media_player.ps4_universal
-              #   artwork: cover
-              #   toggle_power: false
+              - type: custom:mini-media-player
+                entity: media_player.ps4_universal
+                artwork: cover
+                toggle_power: false
               - type: custom:mini-media-player
                 entity: media_player.shield_universal
                 artwork: cover
                 toggle_power: false
           - type: conditional
             conditions:
-              # - entity: media_player.ps4_universal
-              #   state: 'off'
+              - entity: media_player.ps4_universal
+                state: 'off'
               - entity: media_player.shield_universal
                 state: 'off'
             card:
