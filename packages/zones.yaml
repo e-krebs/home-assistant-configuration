@@ -4,13 +4,8 @@ zone:
     longitude: !secret algo_lon
     radius: !secret zone_radius
     icon: mdi:timer
-  - name: new_home
-    latitude: !secret new_home_lat
-    longitude: !secret new_home_lon
-    radius: !secret zone_radius
-    icon: mdi:home-modern
   - name: home
     latitude: !secret home_lat
     longitude: !secret home_lon
     radius: !secret zone_radius
-    icon: mdi:home
+    icon: mdi:home-modern
