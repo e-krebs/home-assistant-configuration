@@ -46,5 +46,4 @@ recorder:
   purge_keep_days: 14
 system_health:
 updater:
-  include_used_components: true
 automation: !include automations.yaml
