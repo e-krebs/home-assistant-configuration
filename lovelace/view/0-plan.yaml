@@ -68,25 +68,25 @@ cards:
         title: températures
         url: >-
           https://compagnie.krebs.tech:444/api/hassio_ingress/Wbv0mV6oopHztKBYL9lRMRYHs7k0YlDbLBZ8xdIcdyk/d-solo/nhdFp2kgz/4-days?theme=dark&panelId=2
-      # - type: custom:mini-graph-card
-      #   hours_to_show: 48
-      #   line_width: 2
-      #   decimals: 1
-      #   hour24: true
-      #   points_per_hour: 2
-      #   align_icon: left
-      #   align_header: left
-      #   show:
-      #     legend: false
-      #   entities:
-      #       - sensor.home_temperature
-      # - type: custom:vertical-stack-in-card
-      #   cards:
-      #     - type: markdown
-      #       theme: markdown
-      #       content: >
-      #         <center>
-      #           il y a {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 / 24) | round(0, "floor") }} jour(s) et {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 % 24) | round(0, "floor") }} heure(s)
-      #         </center>
-      #     - type: picture-entity
-      #       entity: camera.cl4p_tp_cleaning_map
+      - type: custom:mini-graph-card
+        hours_to_show: 48
+        line_width: 2
+        decimals: 1
+        hour24: true
+        points_per_hour: 2
+        align_icon: left
+        align_header: left
+        show:
+          legend: false
+        entities:
+            - sensor.home_temperature
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: markdown
+            theme: markdown
+            content: >
+              <center>
+                il y a {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 / 24) | round(0, "floor") }} jour(s) et {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 % 24) | round(0, "floor") }} heure(s)
+              </center>
+          - type: picture-entity
+            entity: camera.cl4p_tp_cleaning_map
