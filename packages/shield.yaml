@@ -14,7 +14,7 @@ media_player:
   - platform: androidtv
     name: shield tv
     host: 192.168.86.89
-    adb_server_ip: 127.0.0.1    
+    # adb_server_ip: 127.0.0.1    
   - platform: universal
     name: shield_universal
     children:
