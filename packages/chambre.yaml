@@ -1,32 +1,32 @@
 media_player:
   - platform: universal
-    name: salon_universal
+    name: chambre_universal
     children:
-      - media_player.salon
+      - media_player.chambre
       - media_player.appartement
     state_template: >
-      {% if is_state('media_player.salon', 'off') and is_state('media_player.appartement', 'off') %}
+      {% if is_state('media_player.chambre', 'off') and is_state('media_player.appartement', 'off') %}
         off
-      {% elif is_state('media_player.salon', 'off') %}
+      {% elif is_state('media_player.chambre', 'off') %}
         {{ states('media_player.appartement') }}
       {% else %}
-        {{ states('media_player.salon') }}
+        {{ states('media_player.chambre') }}
       {% endif %}
     commands:
       turn_on:
         service: media_player.turn_on
         data:
-          entity_id: media_player.salon
+          entity_id: media_player.chambre
       turn_off:
         service: media_player.turn_off
         data:
-          entity_id: media_player.salon
+          entity_id: media_player.chambre
 
 homeassistant:
   customize:
-    media_player.salon:
+    media_player.chambre:
       icon: mdi:speaker
 
-    media_player.salon_universal:
+    media_player.chambre_universal:
       icon: mdi:speaker-wireless
-      friendly_name: salon
+      friendly_name: chambre

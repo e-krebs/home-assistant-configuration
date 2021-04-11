@@ -1,10 +1,10 @@
 type: custom:state-badge-modder
 card:
   type: state-icon
-  entity: media_player.cuisine_universal
+  entity: media_player.chambre_universal
   hold_action:
     action: toggle
 style:
-  top: 29.5%
+  top: 22.5%
   right: 28.2%
 state_badge_css: /local/custom-ui/state-badge.css?v=0.0.14
