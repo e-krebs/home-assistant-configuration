@@ -5,6 +5,6 @@ card:
   hold_action:
     action: toggle
 style:
-  top: 22.5%
+  top: 21%
   right: 28.2%
 state_badge_css: /local/custom-ui/state-badge.css?v=0.0.14
