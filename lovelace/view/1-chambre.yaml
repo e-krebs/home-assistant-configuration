@@ -1,61 +1,62 @@
 title: chambre
 icon: mdi:bed
 cards:
-  - type: vertical-stack
-    cards:
-      # - type: horizontal-stack
-      #   cards:
-      #     - type: light
-      #       entity: light.chambre_group
-      #     - type: light
-      #       entity: light.grande_chambre
-      - type: horizontal-stack
-        cards:
-          - type: custom:vertical-stack-in-card
-            cards:
-            - type: glance
-              title: 
-              entities:
-                - entity: vacuum.cl4p_tp
-            - type: markdown
-              theme: markdown
-              content: >
-                <center> {{ state_attr('vacuum.cl4p_tp', 'status') }} </center>
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: glance
-                title:
-                entities:
-                  - switch.ecran
-              - type: conditional
-                conditions:
-                  - entity: switch.ecran
-                    state: 'on'
-                card:
-                  type: markdown
-                  theme: markdown
-                  content: >
-                    <center> {{ states('sensor.ecran_power_raw') }} W </center>
-  - type: vertical-stack
-    cards:
-      - type: glance
-        title: roupille
-        show_name: false
-        entities:
-          - entity: sensor.roupille_krebs_tech
-            icon: mdi:ip-network
-          - entity: sensor.roupille_expiry
-          - entity: media_player.pc_universal
-            name: pc
-            hold_action:
-              action: toggle
-          - entity: sensor.pc_power
-            name: ''
-      # - type: horizontal-stack
-      #   cards:
-      #     - type: custom:mini-media-player
-      #       entity: media_player.screen
-      #       artwork: cover
-      #     - type: custom:mini-media-player
-      #       entity: media_player.bureau_universal
-      #       artwork: cover
+    - type: custom:vacuum-card
+      entity: vacuum.cl4p_tp
+      image: /local/ui-lovelace/vacuum.png
+      stats:
+        default:
+          - attribute: clean_area
+            unit: m²
+            subtitle: surface
+          # - attribute: clean_stop
+          #   subtitle: dernier ménage
+      actions:
+        - name: démarrer
+          service: vacuum.start
+          service_data:
+            entity_id: vacuum.cl4p_tp
+          icon: mdi:play-circle-outline
+        - name: retour base
+          service: vacuum.return_to_base
+          service_data:
+            entity_id: vacuum.cl4p_tp
+          icon: mdi:map-marker-outline
+        - name: arrêter
+          service: vacuum.stop
+          service_data:
+            entity_id: vacuum.cl4p_tp
+          icon: mdi:stop-circle-outline
+    - type: glance
+      title: roupille
+      show_name: false
+      entities:
+        - entity: sensor.roupille_krebs_tech
+          icon: mdi:ip-network
+        - entity: sensor.roupille_expiry
+        - entity: media_player.pc_universal
+          name: pc
+          hold_action:
+            action: toggle
+        - entity: sensor.pc_power
+          name: ''
+    - type: glance
+      title: écran
+      show_name: false
+      entities:
+        - entity: switch.ecran
+          name: pc
+          hold_action:
+            action: toggle
+        - entity: sensor.ecran_power
+          name: ''
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: markdown
+          theme: markdown
+          content: >
+            <center>
+              il y a {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 / 24) | round(0, "floor") }} jour(s) et {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 % 24) | round(0, "floor") }} heure(s)
+            </center>
+        - type: picture-entity
+          entity: camera.cl4p_tp_cleaning_map

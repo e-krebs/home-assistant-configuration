@@ -34,6 +34,8 @@ lovelace:
       type: js
     - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
       type: js
+    - url: /hacsfiles/vacuum-card/vacuum-card.js
+      type: module
     - url: /local/custom-ui/weather-card-chart.js?v=0.2.7.custom2
       type: module
     - url: /hacsfiles/lovelace-card-tools/card-tools.js
