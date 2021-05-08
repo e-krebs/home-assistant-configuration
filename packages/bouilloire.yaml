@@ -1,0 +1,5 @@
+recorder:
+  include:
+    entities:
+      - switch.bouilloire
+      - binary_sensor.bouilloire_on_base
