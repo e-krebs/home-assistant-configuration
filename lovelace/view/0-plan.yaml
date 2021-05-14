@@ -25,14 +25,14 @@ cards:
       - type: markdown
         theme: markdown
         content: >
-          <center> {{ states('weather.paris_12eme_arrondissement') }} </center>
+          <center> {{ states('weather.lilas') }} </center>
       - type: glance
         entities:
-          - entity: sensor.paris_12eme_arrondissement_cloud_cover
-          - entity: sensor.paris_12eme_arrondissement_daily_precipitation
-          - entity: sensor.paris_12eme_arrondissement_rain_chance
-          - entity: sensor.paris_12eme_arrondissement_snow_chance
-          - entity: sensor.paris_12eme_arrondissement_freeze_chance
+          - entity: sensor.lilas_cloud_cover
+          - entity: sensor.lilas_daily_precipitation
+          - entity: sensor.lilas_rain_chance
+          - entity: sensor.lilas_snow_chance
+          - entity: sensor.lilas_freeze_chance
             name: 'gel'
     - type: conditional
       conditions:
@@ -59,7 +59,7 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:weather-card-chart
-        weather: weather.paris_12eme_arrondissement
+        weather: weather.lilas
         title: météo france
       - type: custom:weather-card-chart
         weather: weather.dark_sky
