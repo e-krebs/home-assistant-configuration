@@ -64,6 +64,8 @@ cards:
       - type: custom:weather-card-chart
         weather: weather.dark_sky
         title: dark sky
+      - type: 'custom:sun-card'
+        darkMode: true
       - type: iframe
         title: températures
         url: >-
