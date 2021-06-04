@@ -4,9 +4,6 @@ recorder:
       - sensor.dark_sky_temperature
       - sensor.meteo_france_temperature
 
-meteo_france:
-  - city: !secret postal_code
-
 # netatmo:
 #   client_id: !secret netatmo_api_key
 #   client_secret: !secret netatmo_secret_key
