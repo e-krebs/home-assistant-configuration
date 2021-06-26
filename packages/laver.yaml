@@ -100,11 +100,11 @@ automation:
         data_template:
           entity_id: input_select.machine_a_laver
           option: 'off'
-      - service: notify.mobile_app_phone_manu
-        data:
-          message: clear_notification
-          data:
-            tag: 'machine_a_laver'
+      # - service: notify.mobile_app_phone_manu
+      #   data:
+      #     message: clear_notification
+      #     data:
+      #       tag: 'machine_a_laver'
 
   - id: to_iddle
     alias: to iddle
