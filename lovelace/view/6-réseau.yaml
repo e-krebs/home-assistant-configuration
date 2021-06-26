@@ -16,13 +16,17 @@ cards:
   - type: vertical-stack
     cards:
       - type: glance
-        title: mogaba
-        show_name: false
+        show_name: true
         entities:
+          - entity: sensor.whois
+            name: krebs.tech
           - entity: sensor.mogaba_krebs_tech
             icon: mdi:ip-network
-          - sensor.mogaba_expiry
-          - sensor.mogaba_status_volume_1
+            name: mogaba
+          - entity: sensor.mogaba_expiry
+            name: 
+          - entity: sensor.mogaba_status_volume_1
+            name: 
       - type: horizontal-stack
         cards:
           - type: gauge

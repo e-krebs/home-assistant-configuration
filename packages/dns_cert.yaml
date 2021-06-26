@@ -21,6 +21,8 @@ sensor:
   - platform: dnsip
     hostname: !secret dns_synology
     resolver: !secret ip_dns
+  - platform: whois
+    domain: !secret whois_domain
 
 homeassistant:
   customize:
