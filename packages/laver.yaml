@@ -18,10 +18,6 @@ sensor:
       machine_a_laver:
         value_template: '{{ states(''input_select.machine_a_laver'')}}'
 
-      laver_power:
-        value_template: '{{ state_attr(''switch.laver_switch'', ''current_power_w'') | float }}'
-        unit_of_measurement: W
-
 tplink:
   switch:
     - host: 192.168.86.34 # laver

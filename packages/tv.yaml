@@ -1,10 +1,3 @@
-sensor:
-  - platform: template
-    sensors:
-      tv_power:
-        value_template: '{{ state_attr(''switch.tv_switch'', ''current_power_w'') | float }}'
-        unit_of_measurement: W
-
 binary_sensor:
   - platform: template
     sensors:

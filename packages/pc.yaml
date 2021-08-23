@@ -7,10 +7,6 @@ recorder:
 sensor:
   - platform: template
     sensors:
-      ecran_power:
-        value_template: '{{ state_attr(''switch.ecran'', ''current_power_w'') | float }}'
-        unit_of_measurement: W
-
       pc_power_raw:
         value_template: >-
           {% if is_state('sensor.pc_power', '0.0') %}          
