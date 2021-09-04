@@ -35,6 +35,7 @@ cards:
               green: 0
               yellow: 75
               red: 90
+            needle: true
           - type: glance
             show_name: false
             entities:

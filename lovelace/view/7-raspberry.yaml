@@ -20,19 +20,23 @@ cards:
           green: 0
           yellow: 1.1
           red: 2
+        needle: true
       - type: gauge
         entity: sensor.processor_use
         severity: !include ../view-raspberry/gauge-severity_percent.yaml
+        needle: true
   - type: horizontal-stack
     cards:
       - type: gauge
         entity: sensor.memory_use_percent
         unit: ''
         severity: !include ../view-raspberry/gauge-severity_percent.yaml
+        needle: true
       - type: gauge
         entity: sensor.swap_use_percent
         unit: ''
         severity: !include ../view-raspberry/gauge-severity_percent.yaml
+        needle: true
   - type: custom:mini-graph-card
     hours_to_show: 48
     line_width: 3
@@ -55,3 +59,4 @@ cards:
           - type: gauge
             entity: sensor.disk_use_percent
             severity: !include ../view-raspberry/gauge-severity_percent.yaml
+            needle: true
