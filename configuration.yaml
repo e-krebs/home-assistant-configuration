@@ -41,8 +41,6 @@ lovelace:
       type: module
     - url: /hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js
       type: module
-    - url: /local/custom-ui/weather-card-chart.js?v=0.2.8.custom
-      type: module
     - url: /hacsfiles/lovelace-card-tools/card-tools.js
       type: js
     - url: /local/custom-ui/state-badge-modder.js?v=2.0.1

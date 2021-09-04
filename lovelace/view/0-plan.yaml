@@ -58,11 +58,11 @@ cards:
           {% endif %}
   - type: vertical-stack
     cards:
-      - type: custom:weather-card-chart
-        weather: weather.lilas
+      - type: weather-forecast
+        entity: weather.lilas
         title: météo france
-      - type: custom:weather-card-chart
-        weather: weather.dark_sky
+      - type: weather-forecast
+        entity: weather.dark_sky
         title: dark sky
       - type: 'custom:sun-card'
         darkMode: true
