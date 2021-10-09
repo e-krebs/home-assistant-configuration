@@ -30,14 +30,14 @@ media_player:
         {{ states('media_player.shield_tv') }}
       {% endif %}
     commands:
-      # turn_on:
-      #   service: media_player.turn_on
-      #   data:
-      #     entity_id: media_player.shield_tv
-      # turn_off:
-      #   service: media_player.turn_off
-      #   data:
-      #     entity_id: media_player.shield_tv
+      turn_on:
+        service: media_player.turn_on
+        data:
+          entity_id: media_player.shield_tv
+      turn_off:
+        service: media_player.turn_off
+        data:
+          entity_id: media_player.shield_tv
       volume_set:
         service: media_player.volume_set
         data_template:
