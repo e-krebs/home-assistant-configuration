@@ -5,10 +5,6 @@ binary_sensor:
         value_template: >
           {{ states('sensor.tv_power') | float | round(1) >= 0.4 }}
 
-tplink:
-  switch:
-    - host: 192.168.86.35 # tv
-
 homeassistant:
   customize:
     sensor.tv_power:
