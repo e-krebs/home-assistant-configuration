@@ -66,10 +66,6 @@ cards:
         title: dark sky
       - type: 'custom:sun-card'
         darkMode: true
-      - type: iframe
-        title: températures
-        url: >-
-          https://compagnie.krebs.tech:444/api/hassio_ingress/Wbv0mV6oopHztKBYL9lRMRYHs7k0YlDbLBZ8xdIcdyk/d-solo/nhdFp2kgz/4-days?theme=dark&panelId=2
       - type: custom:mini-graph-card
         hours_to_show: 48
         line_width: 2
