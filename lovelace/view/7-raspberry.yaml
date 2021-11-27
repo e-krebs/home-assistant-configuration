@@ -11,6 +11,13 @@ cards:
         name: installée
       - entity: sensor.release_version
         name: disponible
+  - type: markdown
+    theme: markdown
+    content: >
+      ## [rss](https://compagnie.krebs.tech/local/rss/gk.rss) files ({{ state_attr('sensor.files', 'number_of_files') }})
+      {% for file in state_attr('sensor.files', 'file_list') %}
+        {{ file }}
+      {% endfor %}
   - type: horizontal-stack
     cards:
       - type: gauge
