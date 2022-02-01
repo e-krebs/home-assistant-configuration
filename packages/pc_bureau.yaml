@@ -30,5 +30,8 @@ script:
     - service: switch.turn_off
       entity_id: switch.pc_switch
     - wait_template: "{{ float(states('sensor.ecran_power')) < 6 }}"
+      timeout:
+        minutes: 1
+      continue_on_timeout: false
     - service: switch.turn_off
       entity_id: switch.ecran

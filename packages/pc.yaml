@@ -186,7 +186,10 @@ script:
       entity_id: switch.pc_switch
       state: 'on'
     - service: rest_command.pc_sleep
-    - wait_template: "{{ float(states('sensor.pc_power')) <= 20 }}"
+    - wait_template: "{{ float(states('sensor.pc_power')) <= 5 }}"
+      timeout:
+        minutes: 1
+      continue_on_timeout: false
     - service: script.pc_turn_off
 
   pc_switch_off:
