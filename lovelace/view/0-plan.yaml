@@ -66,15 +66,3 @@ cards:
         title: dark sky
       - type: 'custom:sun-card'
         darkMode: true
-      - type: custom:mini-graph-card
-        hours_to_show: 48
-        line_width: 2
-        decimals: 1
-        hour24: true
-        points_per_hour: 2
-        align_icon: left
-        align_header: left
-        show:
-          legend: false
-        entities:
-            - sensor.home_temperature
