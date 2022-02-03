@@ -44,6 +44,12 @@ cards:
         unit: ''
         severity: !include ../view-raspberry/gauge-severity_percent.yaml
         needle: true
+      - type: vertical-stack
+        cards:
+          - type: gauge
+            entity: sensor.disk_use_percent
+            severity: !include ../view-raspberry/gauge-severity_percent.yaml
+            needle: true
   - type: custom:mini-graph-card
     hours_to_show: 48
     line_width: 3
@@ -58,12 +64,11 @@ cards:
       - entity: sensor.home_assistant_v2_db
   - type: horizontal-stack
     cards:
+      - type: glance
+        title: e-krebs
+        entities:
+          - sensor.e_krebs_pile_latest_release
+          - sensor.e_krebs_check_latest_release
       - type: markdown
         theme: markdown
         content: !secret repo_markdown
-      - type: vertical-stack
-        cards:
-          - type: gauge
-            entity: sensor.disk_use_percent
-            severity: !include ../view-raspberry/gauge-severity_percent.yaml
-            needle: true
