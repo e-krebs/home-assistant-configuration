@@ -4,7 +4,6 @@ recorder:
       - sensor.public_ip
       - sensor.compagnie_krebs_tech
       - sensor.mogaba_krebs_tech
-      - sensor.roupille_krebs_tech
 
 sensor:
   - platform: rest
@@ -24,16 +23,11 @@ homeassistant:
     sensor.mogaba_krebs_tech:
       icon: mdi:nas
       friendly_name: mogaba
-    sensor.roupille_krebs_tech:
-      icon: mdi:remote-desktop
-      friendly_name: roupille
 
     sensor.compagnie_expiry:
       friendly_name: compagnie
     sensor.mogaba_expiry:
       friendly_name: mogaba
-    sensor.roupille_expiry:
-      friendly_name: roupille
 
 automation:
 - id: dns_change

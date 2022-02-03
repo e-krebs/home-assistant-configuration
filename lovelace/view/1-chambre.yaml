@@ -28,12 +28,9 @@ cards:
             entity_id: vacuum.cl4p_tp
           icon: mdi:stop-circle-outline
     - type: glance
-      title: roupille
+      title: silence
       show_name: false
       entities:
-        - entity: sensor.roupille_krebs_tech
-          icon: mdi:ip-network
-        - entity: sensor.roupille_expiry
         - entity: media_player.pc_universal
           name: pc
           hold_action:
