@@ -5,9 +5,6 @@ recorder:
       - sensor.release_version
 
 sensor:
-  - platform: version
-    name: current_version
-
   - platform: rest
     resource: !secret endpoint_hassio_release
     name: release_version

@@ -1,7 +1,3 @@
-sonos:
-  media_player:
-    hosts: !secret ip_sonos_beam
-
 homeassistant:
   customize:
     media_player.beam:

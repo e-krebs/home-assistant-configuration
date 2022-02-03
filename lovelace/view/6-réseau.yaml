@@ -18,7 +18,7 @@ cards:
       - type: glance
         show_name: true
         entities:
-          - entity: sensor.whois
+          - entity: sensor.krebs_tech_days_until_expiration
             name: krebs.tech
           - entity: sensor.mogaba_krebs_tech
             icon: mdi:ip-network
