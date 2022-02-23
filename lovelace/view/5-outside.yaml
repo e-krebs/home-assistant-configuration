@@ -11,3 +11,21 @@ cards:
     aspect_ratio: 4x3
     entities:
       - device_tracker.phone_manu
+  - type: entities
+    title: e-krebs
+    entities:
+      - type: weblink
+        name: pile
+        url: https://github.com/e-krebs/pile
+        icon: mdi:bookshelf
+      - sensor.e_krebs_pile_latest_release
+      - type: weblink
+        name: check
+        url: https://github.com/e-krebs/check
+        icon: mdi:checkbox-marked-outline
+      # - sensor.e_krebs_check_latest_release
+      - sensor.e_krebs_check_latest_commit
+      - type: weblink
+        name: home assistant configuration
+        url: https://github.com/e-krebs/home-assistant-configuration/commits/main
+        icon: mdi:source-commit
