@@ -12,6 +12,7 @@ cards:
     entities:
       - device_tracker.phone_manu
   - type: entities
+    icon: mdi:github
     title: e-krebs
     entities:
       - type: weblink
