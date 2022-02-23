@@ -13,7 +13,7 @@ person:
     id: manu
     device_trackers:
       - device_tracker.manu_wifi
-      - device_tracker.phone_manu
+      - device_tracker.manu_phone
 
 binary_sensor:
   - platform: template
@@ -33,7 +33,7 @@ homeassistant:
       icon: mdi:cellphone-wireless
       friendly_name: pixel 5 (wifi)
     
-    device_tracker.phone_manu:
+    device_tracker.manu_phone:
       icon: mdi:cellphone
       friendly_name: pixel 5
 
