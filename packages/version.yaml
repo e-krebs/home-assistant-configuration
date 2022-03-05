@@ -41,23 +41,3 @@ automation:
             icon: /local/notification/tag-text-outline.png
             clickAction: !secret endpoint_hassio_dashboard
             tag: 'version'
-
-  - id: update_available
-    alias: 'Update Available Notifications'
-    trigger:
-      platform: state
-      entity_id: binary_sensor.updater
-      from: "off"
-      to: "on"
-    action:
-      - service: notify.mobile_app_phone_manu
-        data:
-          message: "mise à jour disponible ({{ state_attr('binary_sensor.updater', 'newest_version') }})"
-          data:
-            icon: /local/notification/cloud-download.png
-            clickAction: !secret endpoint_hassio_dashboard
-            tag: 'update'
-            actions:
-              - action: 'URI'
-                title: 'release notes'
-                uri: "{{ state_attr('binary_sensor.updater', 'release_notes') }}"

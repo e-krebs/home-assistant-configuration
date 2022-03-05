@@ -50,6 +50,5 @@ mobile_app:
 recorder:
   purge_keep_days: 14
 system_health:
-updater:
 automation: !include automations.yaml
 sun:
