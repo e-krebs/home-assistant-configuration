@@ -13,6 +13,8 @@ cards:
           name: installée
         - entity: sensor.release_version
           name: disponible
+        - entity: sensor.updater
+          name: available updates
     - type: entities
       entities:
         - type: weblink
