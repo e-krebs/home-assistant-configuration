@@ -9,6 +9,13 @@ sensor:
     resource: !secret endpoint_hassio_release
     name: release_version
     value_template: '{{ value_json.homeassistant.raspberrypi3 }}'
+  - platform: command_line
+    name: updater
+    command: 'curl http://supervisor/supervisor/available_updates -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"updates": [.data.available_updates[] | .update_type]}'''
+    scan_interval: 600
+    value_template: "{{ value_json.updates | length }}"
+    json_attributes:
+      - updates
 
 homeassistant:
   customize:
@@ -41,3 +48,21 @@ automation:
             icon: /local/notification/tag-text-outline.png
             clickAction: !secret endpoint_hassio_dashboard
             tag: 'version'
+  # available updates
+  - id: update_available
+    alias: update available
+    trigger:
+      platform: state
+      entity_id: sensor.updater
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.updater
+        above: 0
+    action:
+      - service: notify.mobile_app_phone_manu
+        data:
+          title: '{{ states(''sensor.updater'') }} pending update(s) available'
+          data:
+            icon: /local/notification/cloud-download.png
+            clickAction: !secret endpoint_hassio_dashboard
+            tag: 'update'
