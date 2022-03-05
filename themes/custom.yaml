@@ -13,3 +13,4 @@ secondary-background-color: '#141619' # dark grey
 primary-text-color: '#c9d1d9' # light grey
 divider-color: '#484f58' # middle grey
 switch-unchecked-color: '#484f58' # middle grey
+input-ink-color: '#c9d1d9' # light grey
