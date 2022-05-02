@@ -66,8 +66,8 @@ automation:
     action:
       - service: notify.mobile_app_phone_manu
         data:
-          title: '{{ states(''sensor.updater'') }} pending update(s) available'
+          message: '{{ states(''sensor.updater'') }} pending update(s) available'
           data:
             icon: /local/notification/cloud-download.png
-            clickAction: !secret endpoint_hassio_dashboard
+            clickAction: !secret endpoint_hassio_config_dashboard
             tag: 'update'
