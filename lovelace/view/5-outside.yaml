@@ -21,6 +21,12 @@ cards:
         icon: mdi:bookshelf
       - sensor.e_krebs_pile_latest_release
       - type: weblink
+        name: '@e-krebs/react-library'
+        url: https://github.com/e-krebs/react-library
+        icon: mdi:library-shelves
+      # - sensor.e_krebs_react_library_latest_release
+      - sensor.e_krebs_react_library_latest_commit
+      - type: weblink
         name: check
         url: https://github.com/e-krebs/check
         icon: mdi:checkbox-marked-outline
