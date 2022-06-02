@@ -3,10 +3,6 @@ recorder:
     entities:
       - vacuum.cl4p_tp
 
-neato:
-  client_id: !secret neato_client_id
-  client_secret: !secret neato_secret
-
 homeassistant:
   customize:
     vacuum.cl4p_tp:

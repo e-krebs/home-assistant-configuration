@@ -9,9 +9,6 @@ recorder:
       - sensor.swap_use_percent
 
 sensor:
-  - platform: filesize
-    file_paths:
-      - !secret hassio_db
   - platform: systemmonitor
     resources:
       - type: disk_use_percent
