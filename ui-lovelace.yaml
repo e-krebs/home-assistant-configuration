@@ -1,6 +1,3 @@
 title: Home
 
-swipe_nav:
-  wrap: false
-
 views: !include_dir_list lovelace/view/

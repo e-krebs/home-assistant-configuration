@@ -33,8 +33,6 @@ lovelace:
       type: module
     - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
       type: js
-    - url: /hacsfiles/lovelace-swipe-navigation/swipe-navigation.js
-      type: js
     - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
       type: js
     - url: /hacsfiles/vacuum-card/vacuum-card.js
