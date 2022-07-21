@@ -4,11 +4,6 @@ recorder:
       - sensor.dark_sky_temperature
       - sensor.meteo_france_temperature
 
-# netatmo:
-#   client_id: !secret netatmo_api_key
-#   client_secret: !secret netatmo_secret_key
-#   discovery: false
-
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
@@ -43,6 +38,9 @@ homeassistant:
 
     weather.lilas:
       friendly_name: météo (météo france)
+
+    weather.tomorrow_io_home_daily:
+      friendly_name: météo (tomorrow.io)
 
     sensor.lilas_cloud_cover:
       friendly_name: nuages

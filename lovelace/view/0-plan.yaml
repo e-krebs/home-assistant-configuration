@@ -59,6 +59,9 @@ cards:
   - type: vertical-stack
     cards:
       - type: weather-forecast
+        entity: weather.tomorrow_io_home_daily
+        title: dark sky
+      - type: weather-forecast
         entity: weather.lilas
         title: météo france
       - type: weather-forecast
