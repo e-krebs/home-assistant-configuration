@@ -8,18 +8,6 @@ cards:
     - type: picture-elements
       image: /local/floorplan/floorplan-map.svg?v1.0.0
       elements: !include_dir_list ../view-plan/map
-    - type: markdown
-      theme: markdown
-      content: >
-        ## [Colis](https://buyer.17track.net/en/myshipment)
-        {% for state in states.sensor %}
-        {% if state.entity_id.split('sensor.seventeentrack_package_') | length > 1 %}
-          **{{ state.attributes.friendly_name }} – {{ as_timestamp(state.last_updated) | timestamp_custom('%a %d %b %H:%M') }}**
-          <ha-icon icon="{{state.attributes.icon}}"></ha-icon> {{ state.attributes.tracking_number }} – _{{ state.state }}_
-          {{ state.attributes.info_text }}
-
-        {% endif %}
-        {% endfor %}
     - type: custom:vertical-stack-in-card
       cards:
       - type: markdown
