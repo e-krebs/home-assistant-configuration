@@ -20,6 +20,7 @@ homeassistant:
   whitelist_external_dirs:
     - !secret hassio_dbpath
   packages: !include_dir_named packages/
+  country: FR
 http:
   ip_ban_enabled: true
   login_attempts_threshold: 3
