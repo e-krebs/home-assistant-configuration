@@ -9,6 +9,7 @@ www/community/**
 harmony_*.conf
 home-assistant.log*
 home-assistant_v2.db*
+zigbee.db*
 html5_push_registrations.conf
 ip_bans.yaml
 known_devices.yaml
