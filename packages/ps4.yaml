@@ -21,9 +21,9 @@ media_player:
       - media_player.ps4
       - media_player.beam
     state_template: >
-      {% if (is_state('media_player.ps4','off') or is_state('media_player.ps4', 'standby')) and states('sensor.tv_power') | float | round(1) < 0.4 %}
+      {% if has_value('sensor.tv_power') and (is_state('media_player.ps4','off') or is_state('media_player.ps4', 'standby')) and states('sensor.tv_power') | float | round(1) < 0.4 %}
         off
-      {% elif states('sensor.tv_power') | float | round(1) < 0.4 %}
+      {% elif has_value('sensor.tv_power') and states('sensor.tv_power') | float | round(1) < 0.4 %}
         tv off
       {% elif is_state('media_player.ps4', 'standby') %}
         off

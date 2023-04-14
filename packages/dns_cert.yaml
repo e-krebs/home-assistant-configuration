@@ -15,7 +15,7 @@ sensor:
       compagnie_expires_in:
         friendly_name: 'Days before compagnie SSL expires'
         value_template: >
-          {{ ((as_timestamp(states('sensor.compagnie_expiry')) - as_timestamp(now())) / 86400) | int }}
+          {{ has_value('sensor.compagnie_expiry') and ((as_timestamp(states('sensor.compagnie_expiry')) - as_timestamp(now())) / 86400) | int }}
         unit_of_measurement: 'days'
 
 homeassistant:

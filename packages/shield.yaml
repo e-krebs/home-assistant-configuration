@@ -18,9 +18,9 @@ media_player:
       - media_player.shield_tv
       - media_player.beam
     state_template: >
-      {% if is_state('media_player.shield_tv','off') and is_state('media_player.shield_cast','off') and states('sensor.tv_power') | float | round(1) < 0.4 %}
+      {% if has_value('sensor.tv_power') and is_state('media_player.shield_tv','off') and is_state('media_player.shield_cast','off') and states('sensor.tv_power') | float | round(1) < 0.4 %}
         off
-      {% elif states('sensor.tv_power') | float | round(1) < 0.4 %}
+      {% elif has_value('sensor.tv_power') and states('sensor.tv_power') | float | round(1) < 0.4 %}
         tv off
       {% else %}
         {{ states('media_player.shield_tv') }}
