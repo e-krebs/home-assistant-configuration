@@ -33,26 +33,6 @@ homeassistant:
       icon: mdi:download
 
 automation:
-  #hass.io update check
-  - id: check_version
-    alias: checks release version for raspberry pi 3
-    trigger:
-      platform: time_pattern
-      hours: '/6'
-      minutes: 00
-      seconds: 00
-    condition:
-      condition: template
-      value_template: '{{ states(''sensor.current_version'') != states(''sensor.release_version'') }}'
-    action:
-      - service: notify.mobile_app_phone_manu
-        data:
-          title: 'nouvelle version publiée : {{ states(''sensor.release_version'') }}'
-          message: 'version actuelle : {{ states(''sensor.current_version'') }}'
-          data:
-            icon: /local/notification/tag-text-outline.png
-            clickAction: !secret endpoint_hassio_dashboard
-            tag: 'version'
   # available updates
   - id: update_available
     alias: update available
