@@ -1,31 +1,11 @@
 recorder:
   include:
     entities:
-      - sensor.dark_sky_temperature
       - sensor.meteo_france_temperature
 
-weather:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    mode: daily
-
 sensor:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    language: fr
-    monitored_conditions:
-      - temperature
-      - alerts
-    units: si
-    scan_interval: '00:05'
   - platform: template
     sensors:
-      dark_sky_alerts_expires:
-        value_template: >
-          {% if states('sensor.dark_sky_alerts') | int > 0 %}
-            {{ state_attr('sensor.dark_sky_alerts', 'expires') | timestamp_local }}
-          {% endif %}
-
       meteo_france_temperature:
         value_template: >
           {{ state_attr('weather.lilas', 'temperature') }}
@@ -33,9 +13,6 @@ sensor:
 
 homeassistant:
   customize:
-    weather.dark_sky:
-      friendly_name: météo (dark sky)
-
     weather.lilas:
       friendly_name: météo (météo france)
 
@@ -57,9 +34,6 @@ homeassistant:
     sensor.lilas_freeze_chance:
       friendly_name: gel
       icon: mdi:snowflake-alert
-
-    sensor.dark_sky_temperature:
-      friendly_name: température (dark sky)
 
     sensor.meteo_france_temperature:
       friendly_name: température (météo france)

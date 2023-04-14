@@ -22,28 +22,6 @@ cards:
           - entity: sensor.lilas_snow_chance
           - entity: sensor.lilas_freeze_chance
             name: 'gel'
-    - type: conditional
-      conditions:
-        - entity: sensor.dark_sky_alerts
-          state_not: '0'
-      card:
-        type: markdown
-        theme: markdown
-        content: |
-          ## alertes météo
-          {% if (states.sensor.dark_sky_alerts.state | int == 1) %}
-            <ha-icon icon="mdi:alert-decagram-outline"></ha-icon> **{{ state_attr('sensor.dark_sky_alerts', 'title' | string) }}** _({{ state_attr('sensor.dark_sky_alerts', 'severity' | string) }})_
-            _expires: {{ state_attr('sensor.dark_sky_alerts', 'expires' | string) | timestamp_custom('%A %d %b %H:%M') }}_
-            {{ state_attr('sensor.dark_sky_alerts', 'uri' | string) }}
-            {{ state_attr('sensor.dark_sky_alerts', 'description' | string) }}
-          {% else %}
-            {% for i in range(0,states.sensor.dark_sky_alerts.state | int) %}
-            <ha-icon icon="mdi:alert-decagram-outline"></ha-icon> **{{ state_attr('sensor.dark_sky_alerts', 'title_' + i | string) }}** _({{ state_attr('sensor.dark_sky_alerts', 'severity_' + i | string) }})_
-              _expires: {{ state_attr('sensor.dark_sky_alerts', 'expires_' + i | string) | timestamp_custom('%A %d %b %H:%M') }}_
-              {{ state_attr('sensor.dark_sky_alerts', 'uri_' + i | string) }}
-              {{ state_attr('sensor.dark_sky_alerts', 'description_' + i | string) }}
-            {% endfor %}
-          {% endif %}
   - type: vertical-stack
     cards:
       - type: weather-forecast
@@ -52,8 +30,5 @@ cards:
       - type: weather-forecast
         entity: weather.lilas
         title: météo france
-      - type: weather-forecast
-        entity: weather.dark_sky
-        title: dark sky
       - type: 'custom:sun-card'
         darkMode: true
