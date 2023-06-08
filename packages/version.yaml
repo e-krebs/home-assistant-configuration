@@ -9,14 +9,16 @@ sensor:
     resource: !secret endpoint_hassio_release
     name: release_version
     value_template: '{{ value_json.homeassistant.raspberrypi3 }}'
-  - platform: command_line
-    name: updater
-    command: 'curl http://supervisor/supervisor/available_updates -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"updates": [.data.available_updates[] | .update_type]}'''
-    scan_interval: 600
-    value_template: "{{ value_json.updates | length }}"
-    json_attributes:
-      - updates
-    unit_of_measurement: updates
+
+command_line:
+  - sensor:
+      command: 'curl http://supervisor/supervisor/available_updates -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"updates": [.data.available_updates[] | .update_type]}'''
+      name: updater
+      scan_interval: 600
+      value_template: "{{ value_json.updates | length }}"
+      json_attributes:
+        - updates
+      unit_of_measurement: updates
 
 homeassistant:
   customize:
