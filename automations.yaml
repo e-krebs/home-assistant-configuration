@@ -1,0 +1,32 @@
+- id: '1688025073699'
+  alias: écran (remote 1)
+  description: ''
+  trigger:
+  - device_id: c4b339247fa73cec17326458303b98c7
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: button_1
+  condition: []
+  action:
+  - service: switch.toggle
+    data: {}
+    target:
+      entity_id: switch.ecran
+  mode: single
+- id: '1688026404869'
+  alias: pc (remote 2)
+  description: ''
+  trigger:
+  - device_id: c4b339247fa73cec17326458303b98c7
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: button_2
+  condition: []
+  action:
+  - service: switch.toggle
+    data: {}
+    target:
+      entity_id: switch.pc_switch_safe
+  mode: single
