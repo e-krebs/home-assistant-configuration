@@ -1,6 +1,7 @@
 media_player:
   - platform: universal
     name: pc_universal
+    unique_id: pc_universal
     state_template: >
       {% if is_state('switch.pc_switch_safe', 'on') %}
         on
