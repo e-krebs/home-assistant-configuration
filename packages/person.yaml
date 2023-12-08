@@ -3,11 +3,6 @@ recorder:
     entities:
       - person.manu
 
-device_tracker:
-  - platform: ping
-    hosts:
-      manu_wifi: !secret ip_manu
-
 person:
   - name: manu
     id: manu
@@ -32,7 +27,7 @@ homeassistant:
     device_tracker.manu_wifi:
       icon: mdi:cellphone-wireless
       friendly_name: pixel 5 (wifi)
-    
+
     device_tracker.manu_phone:
       icon: mdi:cellphone
       friendly_name: pixel 5
