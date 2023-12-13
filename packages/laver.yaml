@@ -16,6 +16,7 @@ sensor:
   - platform: template
     sensors:
       machine_a_laver:
+        unique_id: machine_a_laver
         value_template: '{{ states(''input_select.machine_a_laver'')}}'
 
 homeassistant:
@@ -75,6 +76,8 @@ automation:
       platform: numeric_state
       entity_id: sensor.laver_power
       below: 0.7
+      for:
+        minutes: 5
     condition:
       condition: or
       conditions:
@@ -126,7 +129,7 @@ automation:
     trigger:
       platform: numeric_state
       entity_id: sensor.laver_power
-      above: 2.0
+      above: 4.0
     condition:
       condition: or
       conditions:
@@ -154,8 +157,7 @@ automation:
     trigger:
       platform: numeric_state
       entity_id: sensor.laver_power
-      above: 0.7
-      below: 2.0
+      below: 4.0
     condition:
       - condition: state
         entity_id: input_select.machine_a_laver
