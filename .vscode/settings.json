@@ -22,6 +22,8 @@
       "colors": "css"
     }
   ],
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
   "files.associations": {
     "*.yaml": "home-assistant"
   }

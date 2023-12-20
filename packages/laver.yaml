@@ -130,6 +130,8 @@ automation:
       platform: numeric_state
       entity_id: sensor.laver_power
       above: 4.0
+      for:
+        minutes: 5
     condition:
       condition: or
       conditions:
@@ -139,6 +141,9 @@ automation:
         - condition: state
           entity_id: input_select.machine_a_laver
           state: 'off'
+        - condition: state
+          entity_id: input_select.machine_a_laver
+          state: 'on'
     action:
       - service: input_select.select_option
         data_template:
@@ -158,6 +163,8 @@ automation:
       platform: numeric_state
       entity_id: sensor.laver_power
       below: 4.0
+      for:
+        minutes: 5
     condition:
       - condition: state
         entity_id: input_select.machine_a_laver
