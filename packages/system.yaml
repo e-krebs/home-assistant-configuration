@@ -8,16 +8,6 @@ recorder:
       - sensor.processor_use
       - sensor.swap_use_percent
 
-sensor:
-  - platform: systemmonitor
-    resources:
-      - type: disk_use_percent
-        arg: /
-      - type: load_5m
-      - type: memory_use_percent
-      - type: processor_use
-      - type: swap_use_percent
-
 homeassistant:
   customize:
     sensor.home_assistant_v2_db:
