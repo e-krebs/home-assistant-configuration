@@ -30,5 +30,4 @@ cards:
       - type: weather-forecast
         entity: weather.lilas
         title: météo france
-      - type: 'custom:sun-card'
-        darkMode: true
+      - type: custom:horizon-card

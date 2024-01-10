@@ -38,7 +38,7 @@ lovelace:
       type: js
     - url: /hacsfiles/vacuum-card/vacuum-card.js
       type: module
-    - url: /hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js
+    - url: /hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js
       type: module
     - url: /hacsfiles/lovelace-card-tools/card-tools.js
       type: js
