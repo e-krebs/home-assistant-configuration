@@ -41,3 +41,5 @@ cards:
             entities:
               - sensor.mogaba_total_size_volume_1
               - sensor.mogaba_used_space_volume_1
+      - type: tile
+        entity: binary_sensor.z_wave_js_running
