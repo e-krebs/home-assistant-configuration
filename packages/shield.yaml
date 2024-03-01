@@ -14,17 +14,8 @@ media_player:
   - platform: universal
     name: shield_universal
     children:
-      - media_player.shield_cast
       - media_player.shield_tv
       - media_player.beam
-    state_template: >
-      {% if has_value('sensor.tv_power') and is_state('media_player.shield_tv','off') and is_state('media_player.shield_cast','off') and states('sensor.tv_power') | float | round(1) < 0.4 %}
-        off
-      {% elif has_value('sensor.tv_power') and states('sensor.tv_power') | float | round(1) < 0.4 %}
-        tv off
-      {% else %}
-        {{ states('media_player.shield_tv') }}
-      {% endif %}
     commands:
       turn_on:
         service: media_player.turn_on
@@ -62,3 +53,4 @@ media_player:
       volume_level: media_player.beam|volume_level
       source: media_player.shield_tv|source
       source_list: media_player.shield_tv|source_list
+      state: media_player.shield_tv|state

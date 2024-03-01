@@ -18,7 +18,6 @@ ha-icon[data-state="returning"],
 ha-icon[data-domain="person"][data-state="home"] {
   color: var(--paper-item-icon-active-color);
 }
-ha-icon[data-state="tv off"],
 ha-icon[data-state="error"],
 ha-icon[data-domain="sensor"][data-state="done"] {
   color: var(--state-icon-error-color);

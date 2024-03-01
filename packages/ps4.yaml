@@ -21,11 +21,7 @@ media_player:
       - media_player.ps4
       - media_player.beam
     state_template: >
-      {% if has_value('sensor.tv_power') and (is_state('media_player.ps4','off') or is_state('media_player.ps4', 'standby')) and states('sensor.tv_power') | float | round(1) < 0.4 %}
-        off
-      {% elif has_value('sensor.tv_power') and states('sensor.tv_power') | float | round(1) < 0.4 %}
-        tv off
-      {% elif is_state('media_player.ps4', 'standby') %}
+      {% if is_state('media_player.ps4','off') or is_state('media_player.ps4', 'standby') %}
         off
       {% else %}
         {{ states('media_player.ps4') }}
@@ -71,13 +67,6 @@ script:
     - service: media_player.turn_off
       data:
         entity_id: media_player.ps4
-    # - condition: state
-    #   entity_id: media_player.shield_cast
-    #   state: 'off'
-    # - condition: state
-    #   entity_id: media_player.shield_tv
-    #   state: 'off'
-    # - service: script.tv_off
 
   ps4_on:
     alias: ps4 on
@@ -85,5 +74,3 @@ script:
     - service: media_player.turn_on
       data:
         entity_id: media_player.ps4
-    # - service: script.tv_on
-    # - service: script.tv_input_console

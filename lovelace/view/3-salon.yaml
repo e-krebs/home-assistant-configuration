@@ -25,14 +25,3 @@ cards:
               type: custom:mini-media-player
               entity: media_player.beam
               artwork: cover
-      # - type: horizontal-stack
-      #   cards:
-      #     - type: vertical-stack
-      #       cards: !include_dir_list ../view-salon/tv
-      #     - type: vertical-stack
-      #       cards:
-      #         - type: light
-      #           entity: light.salon_group
-      #         # - type: custom:mini-media-player
-      #         #   entity: media_player.salon_universal
-      #         #   artwork: cover
