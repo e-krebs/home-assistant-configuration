@@ -14,3 +14,11 @@ homeassistant:
 
     sensor.google_wifi_new_version:
       friendly_name: mise à jour
+
+    sensor.google_wifi_local_ip:
+      friendly_name: google wifi (ip)
+      icon: mdi:ip-network-outline
+
+    sensor.google_wifi_uptime:
+      friendly_name: uptime wifi
+      icon: mdi:access-point-network

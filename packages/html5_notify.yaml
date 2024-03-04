@@ -6,7 +6,6 @@ notify:
     vapid_email: !secret vapid_email
 
 automation:
-  # notifications
   # clic sur 'éteindre le pc'
   - id: turn_off_pc_notif
     alias: turn off pc from notification
@@ -18,18 +17,6 @@ automation:
     action:
       - service: switch.turn_off
         entity_id: switch.pc_switch_safe
-
-  # # clic sur 'éteindre les lumières'
-  # - id: turn_off_lights_notif
-  #   alias: turn off lights from notification
-  #   trigger:
-  #     platform: event
-  #     event_type: html5_notification.clicked
-  #     event_data:
-  #       action: all_lights_off
-  #   action:
-  #     - service: light.turn_off
-  #       entity_id: light.all
 
   #clic sur 'désactiver 30min' (intrusion_check)
   - id: intrusion_check_disable

@@ -1,4 +1,0 @@
-# homeassistant:
-#   customize:
-#     media_player.screen:
-#       icon: mdi:google-assistant

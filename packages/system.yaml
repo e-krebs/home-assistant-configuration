@@ -7,12 +7,16 @@ recorder:
       - sensor.memory_use_percent
       - sensor.processor_use
       - sensor.swap_use_percent
+      - binary_sensor.z_wave_js_running
 
 homeassistant:
   customize:
     sensor.home_assistant_v2_db:
       friendly_name: taille bdd
       icon: mdi:database
+    binary_sensor.z_wave_js_running:
+      friendly_name: z-wave js
+
 
     sensor.disk_use_percent:
       friendly_name: usage disque
