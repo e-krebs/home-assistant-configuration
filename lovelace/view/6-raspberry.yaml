@@ -2,32 +2,42 @@ title: raspberry
 icon: mdi:raspberry-pi
 cards:
   - type: vertical-stack
+    title: compagnie
     cards:
-    - type: glance
-      title: compagnie
-      show_name: false
-      entities:
-        - sensor.compagnie_krebs_tech
-        - sensor.compagnie_expiry
-        - entity: sensor.current_version
-          name: installée
-        - entity: sensor.release_version
-          name: disponible
-        - entity: sensor.updater
-          name: available updates
-    - type: entities
-      entities:
-        - type: weblink
-          name: home assistant configuration
-          url: https://github.com/e-krebs/home-assistant-configuration/commits/main
-          icon: mdi:source-commit
-    - type: markdown
-      theme: markdown
-      content: >
-        ## [rss](https://compagnie.krebs.tech/local/rss/gk.rss) files ({{ state_attr('sensor.files', 'number_of_files') }})
-        {% for file in state_attr('sensor.files', 'file_list') %}
-          {{ file }}
-        {% endfor %}
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: sensor.compagnie_krebs_tech
+          - type: tile
+            entity: sensor.compagnie_expiry
+            name: compagnie.krebs.tech
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: binary_sensor.z_wave_js_running
+          - type: tile
+            entity: sensor.updater
+            name: available updates
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: sensor.current_version
+            name: installée
+          - type: tile
+            entity: sensor.release_version
+            name: disponible
+      - type: entities
+        entities:
+          - type: weblink
+            name: home assistant configuration
+            url: https://github.com/e-krebs/home-assistant-configuration/commits/main
+            icon: mdi:source-commit
+      - type: markdown
+        content: >
+          ## [rss](https://compagnie.krebs.tech/local/rss/gk.rss) files ({{ state_attr('sensor.files', 'number_of_files') }})
+          {% for file in state_attr('sensor.files', 'file_list') %}
+            {{ file }}
+          {% endfor %}
   - type: vertical-stack
     cards:
     - type: horizontal-stack

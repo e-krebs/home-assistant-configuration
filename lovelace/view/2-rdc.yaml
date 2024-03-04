@@ -1,0 +1,28 @@
+title: salon
+icon: mdi:table-furniture
+cards:
+  - type: horizontal-stack
+    title: bouilloire
+    cards:
+      - type: tile
+        entity: switch.bouilloire
+      - type: tile
+        entity: binary_sensor.bouilloire_on_base
+  - type: vertical-stack
+    title: media center
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: media-control
+            entity: media_player.ps4_universal
+          - type: media-control
+            entity: media_player.shield_universal
+      - type: conditional
+        conditions:
+          - entity: media_player.ps4_universal
+            state: 'off'
+          - entity: media_player.shield_universal
+            state: 'off'
+        card:
+          type: media-control
+          entity: media_player.beam

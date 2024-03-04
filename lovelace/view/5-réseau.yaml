@@ -1,0 +1,56 @@
+title: réseau
+icon: mdi:network-outline
+cards:
+  - type: vertical-stack
+    title: google wifi
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: sensor.google_wifi_status
+            name: google wifi
+          - type: tile
+            entity: sensor.google_wifi_uptime
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: sensor.google_wifi_local_ip
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: sensor.google_wifi_current_version
+          - type: tile
+            entity: sensor.google_wifi_new_version
+
+  - type: vertical-stack
+    title: mogaba
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: sensor.mogaba_expiry
+            name: mogaba.krebs.tech
+          - type: tile
+            entity: sensor.mogaba_krebs_tech
+            name: mogaba (ip)
+            icon: mdi:ip-network-outline
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.mogaba_volume_used_volume_1
+            severity:
+              green: 0
+              yellow: 75
+              red: 90
+            needle: true
+          - type: vertical-stack
+            cards:
+              - type: tile
+                entity: sensor.mogaba_status_volume_1
+                name: status (volume 1)
+              - type: tile
+                entity: sensor.mogaba_total_size_volume_1
+                name: total size (volume 1)
+              - type: tile
+                entity: sensor.mogaba_used_space_volume_1
+                name: used space (volume 1)

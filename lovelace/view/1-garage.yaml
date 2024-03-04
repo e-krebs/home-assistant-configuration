@@ -1,0 +1,69 @@
+title: rez-de-chaussée
+icon: mdi:table-chair
+cards:
+  - type: horizontal-stack
+    title: silence
+    cards:
+      - type: tile
+        entity: media_player.pc_universal
+        hold_action:
+          action: toggle
+      - type: tile
+        entity: sensor.pc_power
+        name: ' '
+  - type: horizontal-stack
+    title: écran
+    cards:
+      - type: tile
+        entity: switch.ecran
+        hold_action:
+          action: toggle
+      - type: tile
+        entity: sensor.ecran_power
+        name: ' '
+  - type: vertical-stack
+    title: machine à laver
+    cards:
+      - type: tile
+        entity: sensor.machine_a_laver
+      - type: custom:mini-graph-card
+        hours_to_show: 48
+        line_width: 3
+        decimals: 0
+        lower_bound: 0
+        upper_bound: 50
+        hour24: true
+        points_per_hour: 2
+        align_icon: left
+        align_header: left
+        show:
+          legend: false
+        entities:
+          - sensor.laver_power
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        title: cl4p-tp
+        cards:
+          - type: tile
+            entity: vacuum.cl4p_tp
+            state_content:
+              - state
+              - clean_area
+              - battery_level
+            features:
+            - type: vacuum-commands
+              commands:
+                - start_pause
+                - return_home
+                - stop
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: markdown
+            theme: markdown
+            content: >
+              <center>
+                il y a {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 / 24) | round(0, "floor") }} jour(s) et {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 % 24) | round(0, "floor") }} heure(s)
+              </center>
+          - type: picture-entity
+            entity: camera.cl4p_tp_cleaning_map

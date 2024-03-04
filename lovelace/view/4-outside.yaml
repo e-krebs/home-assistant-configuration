@@ -1,0 +1,67 @@
+title: outside
+icon: mdi:web
+cards:
+  - type: horizontal-stack
+    cards:
+    title: internet
+    cards:
+      - type: tile
+        entity: sensor.public_ip
+      - type: tile
+        entity: sensor.krebs_tech_days_until_expiration
+        name: krebs.tech (dns)
+  - type: horizontal-stack
+    title: présence
+    cards:
+      - type: tile
+        entity: input_select.home_activity
+      - type: tile
+        entity: person.manu
+  - type: map
+    default_zoom: 15
+    aspect_ratio: 4x3
+    entities:
+      - device_tracker.manu_phone
+  - type: vertical-stack
+    cards:
+      - type: vertical-stack
+        title: pile
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - type: weblink
+                    name: pile
+                    url: https://github.com/e-krebs/pile
+                    icon: mdi:bookshelf
+              - type: tile
+                entity: sensor.e_krebs_pile_latest_release
+          - type: tile
+            entity: sensor.e_krebs_pile_latest_commit
+      - type: vertical-stack
+        title: react-library
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                entities:
+                  - type: weblink
+                    name: '@e-krebs/react-library'
+                    url: https://github.com/e-krebs/react-library
+                    icon: mdi:library-shelves
+              - type: tile
+                entity: sensor.e_krebs_react_library_latest_release
+          - type: tile
+            entity: sensor.e_krebs_react_library_latest_commit
+      - type: vertical-stack
+        title: check
+        cards:
+          - type: entities
+            entities:
+              - type: weblink
+                name: check
+                url: https://github.com/e-krebs/check
+                icon: mdi:checkbox-marked-outline
+          - type: tile
+            entity: sensor.e_krebs_check_latest_commit

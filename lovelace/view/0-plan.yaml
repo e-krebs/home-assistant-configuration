@@ -1,27 +1,34 @@
-title: appartement
+title: général
 icon: mdi:floor-plan
 cards:
   - type: vertical-stack
     cards:
-    - type: horizontal-stack
-      cards: !include_dir_list ../view-plan/shortcuts
     - type: picture-elements
       image: /local/floorplan/floorplan-map.svg?v1.0.0
       elements: !include_dir_list ../view-plan/map
-    - type: custom:vertical-stack-in-card
-      cards:
-      - type: markdown
-        theme: markdown
-        content: >
-          <center> {{ states('weather.lilas') }} </center>
-      - type: glance
-        entities:
-          - entity: sensor.lilas_cloud_cover
-          - entity: sensor.lilas_daily_precipitation
-          - entity: sensor.lilas_rain_chance
-          - entity: sensor.lilas_snow_chance
-          - entity: sensor.lilas_freeze_chance
-            name: 'gel'
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: markdown
+            content: >
+              <center> {{ states('weather.lilas') }} </center>
+          - type: tile
+            entity: sensor.lilas_cloud_cover
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: tile
+                entity: sensor.lilas_daily_precipitation
+              - type: tile
+                entity: sensor.lilas_rain_chance
+          - type: horizontal-stack
+            cards:
+              - type: tile
+                entity: sensor.lilas_snow_chance
+              - type: tile
+                entity: sensor.lilas_freeze_chance
   - type: vertical-stack
     cards:
       - type: weather-forecast
