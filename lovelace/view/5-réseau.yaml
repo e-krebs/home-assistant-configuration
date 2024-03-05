@@ -31,9 +31,12 @@ cards:
             entity: sensor.mogaba_expiry
             name: mogaba.krebs.tech
           - type: tile
-            entity: sensor.mogaba_krebs_tech
-            name: mogaba (ip)
-            icon: mdi:ip-network-outline
+            entity: sensor.mogaba_status_volume_1
+            name: status (volume 1)
+      - type: tile
+        entity: sensor.mogaba_krebs_tech
+        name: mogaba (ip)
+        icon: mdi:ip-network-outline
       - type: horizontal-stack
         cards:
           - type: gauge
@@ -45,12 +48,10 @@ cards:
             needle: true
           - type: vertical-stack
             cards:
-              - type: tile
-                entity: sensor.mogaba_status_volume_1
-                name: status (volume 1)
+              - type: sensor
+                entity: sensor.mogaba_used_space_volume_1
+                name: used space (volume 1)
+                graph: line
               - type: tile
                 entity: sensor.mogaba_total_size_volume_1
                 name: total size (volume 1)
-              - type: tile
-                entity: sensor.mogaba_used_space_volume_1
-                name: used space (volume 1)

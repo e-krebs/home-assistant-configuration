@@ -1,45 +1,39 @@
 title: rez-de-chaussée
 icon: mdi:table-chair
 cards:
-  - type: horizontal-stack
-    title: silence
+  - type: vertical-stack
+    title: bureau
     cards:
-      - type: tile
-        entity: media_player.pc_universal
-        hold_action:
-          action: toggle
-      - type: tile
-        entity: sensor.pc_power
-        name: ' '
-  - type: horizontal-stack
-    title: écran
-    cards:
-      - type: tile
-        entity: switch.ecran
-        hold_action:
-          action: toggle
-      - type: tile
-        entity: sensor.ecran_power
-        name: ' '
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: media_player.pc_universal
+            hold_action:
+              action: toggle
+          - type: tile
+            entity: switch.ecran
+            hold_action:
+              action: toggle
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            entity: sensor.pc_power
+            graph: line
+          - type: sensor
+            entity: sensor.ecran_power
+            graph: line
   - type: vertical-stack
     title: machine à laver
     cards:
       - type: tile
         entity: sensor.machine_a_laver
-      - type: custom:mini-graph-card
+      - type: sensor
+        entity: sensor.laver_power
+        graph: line
         hours_to_show: 48
-        line_width: 3
-        decimals: 0
-        lower_bound: 0
-        upper_bound: 50
-        hour24: true
-        points_per_hour: 2
-        align_icon: left
-        align_header: left
-        show:
-          legend: false
-        entities:
-          - sensor.laver_power
+        limits:
+          min: 0
+          max: 50
   - type: vertical-stack
     cards:
       - type: horizontal-stack

@@ -72,15 +72,7 @@ cards:
               entity: sensor.disk_use_percent
               severity: !include ../view-raspberry/gauge-severity_percent.yaml
               needle: true
-    - type: custom:mini-graph-card
-      hours_to_show: 48
-      line_width: 3
-      decimals: 1
-      hour24: true
-      align_icon: left
-      align_header: left
-      show:
-        legend: false
-        points: true
-      entities:
-        - entity: sensor.home_assistant_v2_db
+    - type: sensor
+      entity: sensor.home_assistant_v2_db
+      graph: line
+      hours_to_show : 48
