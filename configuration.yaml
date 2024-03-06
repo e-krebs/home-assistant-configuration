@@ -30,14 +30,8 @@ http:
 lovelace:
   mode: yaml
   resources:
-    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
-      type: module
     - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
       type: js
-    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
-      type: js
-    - url: /hacsfiles/vacuum-card/vacuum-card.js
-      type: module
     - url: /hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js
       type: module
     - url: /hacsfiles/lovelace-card-tools/card-tools.js

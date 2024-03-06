@@ -6,7 +6,6 @@ accent-color: '#FDD835' #jaune
 state-icon-unavailable-color: '#484f58' # middle grey
 paper-item-icon-active-color: '#0DA035' #vert (switch)
 paper-dialog-color: '#727272'
-mini-media-player-icon-color: '#03A9F4' #bleu
 primary-background-color: '#0b0c0e' # almost black
 card-background-color: '#141619' # dark grey
 secondary-background-color: '#141619' # dark grey
