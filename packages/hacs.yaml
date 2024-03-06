@@ -18,5 +18,5 @@ automation:
             {%- endfor -%}
           data:
             icon: /local/notification/hacs.png
-            clickAction: !secret endpoint_hacs
+            clickAction: !secret endpoint_config
             tag: 'hacs'

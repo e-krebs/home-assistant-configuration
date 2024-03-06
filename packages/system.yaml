@@ -44,7 +44,7 @@ automation:
           message: 'version {{ states(''sensor.current_version'') }}'
           data:
             icon: /local/notification/server.png
-            clickAction: !secret endpoint_hassio
+            clickAction: !secret endpoint_view
             tag: 'homeassistant'
       - service: frontend.set_theme
         data:
@@ -64,7 +64,7 @@ automation:
           message: 'version {{ states(''sensor.current_version'') }}'
           data:
             icon: /local/notification/server-off.png?v=0 # asking an image from a server shuting down... duh!
-            clickAction: !secret endpoint_hassio
+            clickAction: !secret endpoint_view
             tag: 'homeassistant'
 
   #hass.io database size
@@ -83,4 +83,4 @@ automation:
           message: 'taille actuelle : {{ states(''sensor.home_assistant_v2_db'') }} MB'
           data:
             icon: /local/notification/database-check.png
-            clickAction: !secret endpoint_hassio_host
+            clickAction: !secret endpoint_host

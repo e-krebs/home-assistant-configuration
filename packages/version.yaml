@@ -6,9 +6,9 @@ recorder:
 
 sensor:
   - platform: rest
-    resource: !secret endpoint_hassio_release
+    resource: !secret endpoint_release
     name: release_version
-    value_template: '{{ value_json.homeassistant.raspberrypi3 }}'
+    value_template: '{{ value_json.homeassistant.yellow }}'
 
 command_line:
   - sensor:
@@ -51,5 +51,5 @@ automation:
           message: '{{ states(''sensor.updater'') }} pending update(s) available'
           data:
             icon: /local/notification/cloud-download.png
-            clickAction: !secret endpoint_hassio_config_dashboard
+            clickAction: !secret endpoint_config
             tag: 'update'

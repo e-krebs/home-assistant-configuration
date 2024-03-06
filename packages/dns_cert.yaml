@@ -49,7 +49,7 @@ automation:
         message: '{{ states(''sensor.compagnie_krebs_tech'') }}'
         data:
           icon: /local/notification/dns.png
-          clickAction: !secret endpoint_hassio_info
+          clickAction: !secret endpoint_host
           tag: 'dns'
 - id: public_ip_change
   alias: public ip change
@@ -70,7 +70,7 @@ automation:
         message: '{{ states(''sensor.public_ip'') }}'
         data:
           icon: /local/notification/ip-network.png
-          clickAction: !secret endpoint_hassio_info
+          clickAction: !secret endpoint_outside
           tag: 'public_ip'
 # https://community.home-assistant.io/t/lets-encrypt-add-on-not-renewing-certificates-correctly/214294/7
 - id: compagnie_auto_renew
@@ -123,6 +123,6 @@ automation:
       message: " 3/3 - restarted ✅"
       data:
         icon: /local/notification/ssl-renewal.png
-        clickAction: !secret endpoint_hassio_host
+        clickAction: !secret endpoint_host
         tag: 'ssl_renewal'
   mode: single

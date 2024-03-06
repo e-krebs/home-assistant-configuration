@@ -30,7 +30,7 @@ automation:
             dernier ménage il y a {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 / 24) | round(0) }} jour(s) et {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 % 24) | round(0) }} heure(s)
           data:
             icon: /local/notification/vacuum-off.png
-            url: !secret endpoint_bedroom
+            url: !secret endpoint_garage
             tag: 'cl4p-tp'
             actions:
             - title: nettoyer
@@ -54,7 +54,7 @@ automation:
             dernier ménage il y a {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 / 24) | round(0) }} jour(s) et {{ ((as_timestamp(now()) - as_timestamp(state_attr('vacuum.cl4p_tp', 'clean_stop')) | int) / 3600 % 24) | round(0) }} heure(s)
           data:
             icon: /local/notification/vacuum-off.png
-            url: !secret endpoint_bedroom
+            url: !secret endpoint_garage
             tag: 'cl4p-tp'
             actions:
             - title: nettoyer
@@ -72,7 +72,7 @@ automation:
           message: 'ménage en cours'
           data:
             icon: /local/notification/vacuum-on.png
-            url: !secret endpoint_bedroom
+            url: !secret endpoint_garage
             tag: 'cl4p-tp'
             actions:
             - title: arrêter
@@ -95,7 +95,7 @@ automation:
           title: 'cl4p-tp a fini son ménage: {{ states(''vacuum.cl4p_tp'') }}'
           data:
             icon: /local/notification/vacuum-done.png
-            url: !secret endpoint_bedroom
+            url: !secret endpoint_garage
             tag: 'cl4p-tp'
             actions:
             - title: nettoyer

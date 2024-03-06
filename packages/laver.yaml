@@ -49,7 +49,7 @@ automation:
           message: "prise de la machine à laver allum\xE9e"
           data:
             icon: /local/notification/power-plug-on.png?v=0
-            clickAction: !secret endpoint_hassio
+            clickAction: !secret endpoint_garage
             tag: 'laver_switch'
 
   # prise laver : OFF
@@ -67,7 +67,7 @@ automation:
           message: "prise de la machine à laver \xE9teinte"
           data:
             icon: /local/notification/power-plug-off.png?v=0
-            clickAction: !secret endpoint_hassio
+            clickAction: !secret endpoint_garage
             tag: 'laver_switch'
 
   - id: to_off
@@ -117,7 +117,7 @@ automation:
           data:
             icon: /local/notification/machine_a_laver-idle.png
             tag: 'machine_a_laver'
-            clickAction: !secret endpoint_machine_a_laver
+            clickAction: !secret endpoint_garage
 
   - id: to_on
     alias: to on
@@ -150,7 +150,7 @@ automation:
           data:
             icon: /local/notification/machine_a_laver-on.png
             tag: 'machine_a_laver'
-            clickAction: !secret endpoint_machine_a_laver
+            clickAction: !secret endpoint_garage
 
   - id: to_done
     alias: to done
@@ -176,4 +176,4 @@ automation:
           data:
             icon: /local/notification/machine_a_laver-done.png
             tag: 'machine_a_laver'
-            clickAction: !secret endpoint_machine_a_laver
+            clickAction: !secret endpoint_garage
