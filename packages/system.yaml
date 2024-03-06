@@ -46,9 +46,6 @@ automation:
             icon: /local/notification/server.png
             clickAction: !secret endpoint_view
             tag: 'homeassistant'
-      - service: frontend.set_theme
-        data:
-          name: custom
       - service: automation.turn_on
         entity_id: group.all_automations
 
