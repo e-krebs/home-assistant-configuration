@@ -44,19 +44,19 @@ homeassistant:
   customize:
     sensor.pc_power:
       friendly_name: consommation pc
-      icon: mdi:power
+      icon: mdi:power-socket-fr
 
     sensor.pc_power_raw:
       friendly_name: consommation pc
-      icon: mdi:power
+      icon: mdi:power-socket-fr
 
     sensor.ecran_power:
       friendly_name: consommation écran
-      icon: mdi:power
+      icon: mdi:power-socket-fr
 
     sensor.ecran_power_raw:
       friendly_name: consommation écran
-      icon: mdi:power
+      icon: mdi:power-socket-fr
 
     switch.pc_switch:
       friendly_name: prise pc (attention)

@@ -4,16 +4,12 @@ cards:
   - type: vertical-stack
     title: bureau
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: tile
-            entity: media_player.pc_universal
-            hold_action:
-              action: toggle
-          - type: tile
-            entity: switch.ecran
-            hold_action:
-              action: toggle
+      - type: entities
+        state_color: true
+        entities:
+          - media_player.pc_universal
+          - switch.ecran
+        footer:
       - type: horizontal-stack
         cards:
           - type: sensor

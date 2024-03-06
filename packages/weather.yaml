@@ -21,19 +21,22 @@ homeassistant:
 
     sensor.lilas_cloud_cover:
       friendly_name: nuages
+      icon: mdi:clouds
 
     sensor.lilas_daily_precipitation:
       friendly_name: précipitations
+      icon: mdi:weather-pouring
   
     sensor.lilas_rain_chance:
       friendly_name: pluie
 
     sensor.lilas_snow_chance:
       friendly_name: neige
+      icon: mdi:weather-snowy-heavy
 
     sensor.lilas_freeze_chance:
       friendly_name: gel
-      icon: mdi:snowflake-alert
+      icon: mdi:snowflake-thermometer
 
     sensor.meteo_france_temperature:
       friendly_name: température (météo france)

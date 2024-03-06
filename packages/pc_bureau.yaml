@@ -21,7 +21,7 @@ media_player:
 homeassistant:
   customize:
     media_player.pc_universal:
-      icon: mdi:desktop-classic
+      icon: mdi:desktop-tower
       friendly_name: pc
 
 script:
