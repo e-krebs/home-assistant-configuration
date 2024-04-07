@@ -38,7 +38,6 @@ lovelace:
       type: js
     - url: /local/custom-ui/state-badge-modder.js?v=2.0.1
       type: js
-map:
 mobile_app:
 recorder:
   purge_keep_days: 14
