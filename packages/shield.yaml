@@ -13,6 +13,7 @@ homeassistant:
 media_player:
   - platform: universal
     name: shield_universal
+    unique_id: shield_universal
     children:
       - media_player.shield_tv
       - media_player.beam
@@ -53,4 +54,3 @@ media_player:
       volume_level: media_player.beam|volume_level
       source: media_player.shield_tv|source
       source_list: media_player.shield_tv|source_list
-      state: media_player.shield_tv|state
