@@ -26,11 +26,11 @@ homeassistant:
 
     device_tracker.manu_wifi:
       icon: mdi:cellphone-wireless
-      friendly_name: pixel 5 (wifi)
+      friendly_name: pixel 9 pro (wifi)
 
     device_tracker.manu_phone:
       icon: mdi:cellphone
-      friendly_name: pixel 5
+      friendly_name: pixel 9 pro
 
     person.manu:
       icon: mdi:human-male
