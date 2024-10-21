@@ -86,9 +86,6 @@ automation:
           state: 'idle'
         - condition: state
           entity_id: input_select.machine_a_laver
-          state: 'on'
-        - condition: state
-          entity_id: input_select.machine_a_laver
           state: 'done'
     action:
       - service: input_select.select_option
