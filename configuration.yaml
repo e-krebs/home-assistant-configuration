@@ -44,3 +44,4 @@ recorder:
 system_health:
 automation: !include automations.yaml
 sun:
+energy:
