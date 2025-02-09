@@ -30,3 +30,27 @@
     target:
       entity_id: switch.pc_switch_safe
   mode: single
+- id: '1739118122461'
+  alias: mogaba.krebs.tech expiry notif
+  description: ''
+  use_blueprint:
+    path: bkbilly/certificate-expiration.yaml
+    input:
+      certificate_input: sensor.mogaba_expiry
+      days_input: 21
+      time_input: 09:00:00
+      notify_device: a7a3df2f3d99f289e202f52e46830038
+      device_message: "\U0001F512 mogaba.krebs.tech va expirer dans {{ expire_days_var
+        }} jours"
+- id: '1739118202041'
+  alias: compagnie.krebs.tech expiry notif
+  description: ''
+  use_blueprint:
+    path: bkbilly/certificate-expiration.yaml
+    input:
+      certificate_input: sensor.compagnie_expiry
+      days_input: 21
+      time_input: 09:00:00
+      notify_device: a7a3df2f3d99f289e202f52e46830038
+      device_message: "\U0001F512 compagnie.krebs.tech va expirer dans {{ expire_days_var
+        }} jours"
