@@ -1,5 +1,5 @@
-title: raspberry
-icon: mdi:raspberry-pi
+title: hardware
+icon: mdi:home-assistant
 cards:
   - type: vertical-stack
     title: compagnie
@@ -40,39 +40,39 @@ cards:
           {% endfor %}
   - type: vertical-stack
     cards:
-    - type: horizontal-stack
-      cards:
-        - type: gauge
-          entity: sensor.load_5m
-          max: 3
-          severity:
-            green: 0
-            yellow: 1.1
-            red: 2
-          needle: true
-        - type: gauge
-          entity: sensor.processor_use
-          severity: !include ../view-raspberry/gauge-severity_percent.yaml
-          needle: true
-    - type: horizontal-stack
-      cards:
-        - type: gauge
-          entity: sensor.memory_use_percent
-          unit: ''
-          severity: !include ../view-raspberry/gauge-severity_percent.yaml
-          needle: true
-        - type: gauge
-          entity: sensor.swap_use_percent
-          unit: ''
-          severity: !include ../view-raspberry/gauge-severity_percent.yaml
-          needle: true
-        - type: vertical-stack
-          cards:
-            - type: gauge
-              entity: sensor.disk_use_percent
-              severity: !include ../view-raspberry/gauge-severity_percent.yaml
-              needle: true
-    - type: sensor
-      entity: sensor.home_assistant_v2_db
-      graph: line
-      hours_to_show : 48
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.load_5m
+            max: 3
+            severity:
+              green: 0
+              yellow: 1.1
+              red: 2
+            needle: true
+          - type: gauge
+            entity: sensor.processor_use
+            severity: !include ../view-raspberry/gauge-severity_percent.yaml
+            needle: true
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.memory_use_percent
+            unit: ""
+            severity: !include ../view-raspberry/gauge-severity_percent.yaml
+            needle: true
+          - type: gauge
+            entity: sensor.swap_use_percent
+            unit: ""
+            severity: !include ../view-raspberry/gauge-severity_percent.yaml
+            needle: true
+          - type: vertical-stack
+            cards:
+              - type: gauge
+                entity: sensor.disk_use_percent
+                severity: !include ../view-raspberry/gauge-severity_percent.yaml
+                needle: true
+      - type: sensor
+        entity: sensor.home_assistant_v2_db
+        graph: line
+        hours_to_show: 48
