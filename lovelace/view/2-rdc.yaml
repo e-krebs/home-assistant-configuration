@@ -1,13 +1,6 @@
 title: salon
 icon: mdi:fireplace
 cards:
-  - type: horizontal-stack
-    title: bouilloire
-    cards:
-      - type: tile
-        entity: switch.bouilloire
-      - type: tile
-        entity: binary_sensor.bouilloire_on_base
   - type: vertical-stack
     title: media center
     cards:
@@ -20,9 +13,9 @@ cards:
       - type: conditional
         conditions:
           - entity: media_player.ps4_universal
-            state: 'off'
+            state: "off"
           - entity: media_player.shield_universal
-            state: 'off'
+            state: "off"
         card:
           type: media-control
           entity: media_player.beam
