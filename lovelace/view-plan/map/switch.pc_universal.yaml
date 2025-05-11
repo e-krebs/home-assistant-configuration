@@ -1,7 +1,7 @@
 type: custom:state-badge-modder
 card:
   type: state-icon
-  entity: media_player.pc_universal
+  entity: switch.pc_universal
   hold_action:
     action: toggle
 style:

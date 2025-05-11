@@ -1,26 +1,20 @@
-media_player:
-  - platform: universal
-    name: pc_universal
-    unique_id: pc_universal
-    state_template: >
-      {% if is_state('switch.pc_switch_safe', 'on') %}
-        on
-      {% else %}
-        off
-      {% endif %}
-    commands:
-      turn_on:
-        service: switch.turn_on
-        data:
-          entity_id: switch.pc_switch_safe
-      turn_off:
-        service: switch.turn_off
-        data:
-          entity_id: switch.pc_switch_safe
+switch:
+  - platform: template
+    switches:
+      pc_universal:
+        value_template: "is_state('switch.pc_switch_safe', 'on')"
+        turn_on:
+          action: switch.turn_on
+          data:
+            entity_id: switch.pc_switch_safe
+        turn_off:
+          action: switch.turn_off
+          data:
+            entity_id: switch.pc_switch_safe
 
 homeassistant:
   customize:
-    media_player.pc_universal:
+    switch.pc_universal:
       icon: mdi:desktop-tower
       friendly_name: pc
 
@@ -28,11 +22,11 @@ script:
   pc_turn_off:
     alias: pc turn off (dependency)
     sequence:
-    - service: switch.turn_off
-      entity_id: switch.pc_switch
-    - wait_template: "{{ float(states('sensor.ecran_power')) < 6 }}"
-      timeout:
-        minutes: 1
-      continue_on_timeout: false
-    - service: switch.turn_off
-      entity_id: switch.ecran
+      - action: switch.turn_off
+        entity_id: switch.pc_switch
+      - wait_template: "{{ float(states('sensor.ecran_power')) < 6 }}"
+        timeout:
+          minutes: 1
+        continue_on_timeout: false
+      - action: switch.turn_off
+        entity_id: switch.ecran

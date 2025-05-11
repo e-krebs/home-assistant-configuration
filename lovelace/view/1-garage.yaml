@@ -7,9 +7,8 @@ cards:
       - type: entities
         state_color: true
         entities:
-          - media_player.pc_universal
+          - switch.pc_universal
           - switch.ecran
-        footer:
       - type: horizontal-stack
         cards:
           - type: sensor
@@ -42,11 +41,11 @@ cards:
               - clean_area
               - battery_level
             features:
-            - type: vacuum-commands
-              commands:
-                - start_pause
-                - return_home
-                - stop
+              - type: vacuum-commands
+                commands:
+                  - start_pause
+                  - return_home
+                  - stop
       - type: custom:vertical-stack-in-card
         cards:
           - type: markdown
