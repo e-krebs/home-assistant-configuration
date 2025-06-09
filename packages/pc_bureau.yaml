@@ -2,7 +2,8 @@ switch:
   - platform: template
     switches:
       pc_universal:
-        value_template: "is_state('switch.pc_switch_safe', 'on')"
+        unique_id: pc_universal
+        value_template: "{{ is_state('switch.pc_switch_safe', 'on') }}"
         turn_on:
           action: switch.turn_on
           data:
