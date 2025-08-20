@@ -32,12 +32,6 @@ cards:
             name: home assistant configuration
             url: https://github.com/e-krebs/home-assistant-configuration/commits/main
             icon: mdi:source-commit
-      - type: markdown
-        content: >
-          ## [rss](https://compagnie.krebs.tech/local/rss/gk.rss) files ({{ state_attr('sensor.files', 'number_of_files') }})
-          {% for file in state_attr('sensor.files', 'file_list') %}
-            {{ file }}
-          {% endfor %}
   - type: vertical-stack
     cards:
       - type: horizontal-stack

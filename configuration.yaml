@@ -1,7 +1,7 @@
 auth: # Enable the auth component
 config: # Enables configuration UI
 frontend: # Enables the frontend + themes
-  themes: !include_dir_named themes/ 
+  themes: !include_dir_named themes/
 hassio:
 history: # en/disables support for showing history state changes over time
 homeassistant:
@@ -30,14 +30,8 @@ http:
 lovelace:
   mode: yaml
   resources:
-    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
-      type: js
     - url: /hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js
       type: module
-    - url: /hacsfiles/lovelace-card-tools/card-tools.js
-      type: js
-    - url: /local/custom-ui/state-badge-modder.js?v=2.0.1
-      type: js
 mobile_app:
 recorder:
   purge_keep_days: 14
