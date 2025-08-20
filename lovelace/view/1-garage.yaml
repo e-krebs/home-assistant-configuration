@@ -4,11 +4,12 @@ cards:
   - type: vertical-stack
     title: bureau
     cards:
-      - type: entities
-        state_color: true
-        entities:
-          - switch.pc_universal
-          - switch.ecran
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: switch.pc_universal
+          - type: tile
+            entity: switch.ecran
       - type: horizontal-stack
         cards:
           - type: sensor
@@ -17,6 +18,12 @@ cards:
           - type: sensor
             entity: sensor.ecran_power
             graph: line
+      - type: grid
+        square: false
+        columns: 2
+        cards:
+          - type: tile
+            entity: sensor.zigbee_4b_battery
   - type: vertical-stack
     title: machine à laver
     cards:

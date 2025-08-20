@@ -1,12 +1,27 @@
 title: général
 icon: mdi:floor-plan
 cards:
-  - type: vertical-stack
+  - type: grid
+    title: overview
+    square: false
+    columns: 2
     cards:
-    - type: picture-elements
-      image: /local/floorplan/floorplan-map.svg?v1.0.0
-      elements: !include_dir_list ../view-plan/map
+      - type: tile
+        entity: person.manu
+      - type: tile
+        entity: sensor.machine_a_laver
+      - type: tile
+        entity: switch.pc_universal
+      - type: tile
+        entity: switch.ecran
+      - type: tile
+        entity: media_player.ps4_universal
+      - type: tile
+        entity: media_player.beam
+      - type: tile
+        entity: media_player.shield_universal
   - type: vertical-stack
+    title: météo
     cards:
       - type: horizontal-stack
         cards:

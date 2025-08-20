@@ -17,6 +17,7 @@ homeassistant:
 media_player:
   - platform: universal
     name: ps4_universal
+    unique_id: ps4_universal
     children:
       - media_player.ps4
       - media_player.beam
@@ -64,13 +65,13 @@ script:
   ps4_off:
     alias: ps4 off
     sequence:
-    - service: media_player.turn_off
-      data:
-        entity_id: media_player.ps4
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.ps4
 
   ps4_on:
     alias: ps4 on
     sequence:
-    - service: media_player.turn_on
-      data:
-        entity_id: media_player.ps4
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.ps4
