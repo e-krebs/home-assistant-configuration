@@ -50,22 +50,18 @@ cards:
             needle: true
       - type: horizontal-stack
         cards:
-          - type: gauge
+          - type: tile
             entity: sensor.memory_use_percent
-            unit: ""
-            severity: !include ../view-raspberry/gauge-severity_percent.yaml
-            needle: true
-          - type: gauge
+            features:
+              - type: "bar-gauge"
+          - type: tile
             entity: sensor.swap_use_percent
-            unit: ""
-            severity: !include ../view-raspberry/gauge-severity_percent.yaml
-            needle: true
-          - type: vertical-stack
-            cards:
-              - type: gauge
-                entity: sensor.disk_use_percent
-                severity: !include ../view-raspberry/gauge-severity_percent.yaml
-                needle: true
+            features:
+              - type: "bar-gauge"
+          - type: tile
+            entity: sensor.disk_use_percent
+            features:
+              - type: "bar-gauge"
       - type: sensor
         entity: sensor.home_assistant_v2_db
         graph: line

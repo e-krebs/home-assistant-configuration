@@ -30,20 +30,30 @@ cards:
               <center> {{ states('weather.lilas') }} </center>
           - type: tile
             entity: sensor.lilas_cloud_cover
+            features:
+              - type: "bar-gauge"
       - type: vertical-stack
         cards:
           - type: horizontal-stack
             cards:
               - type: tile
                 entity: sensor.lilas_daily_precipitation
+                features:
+                  - type: "bar-gauge"
               - type: tile
                 entity: sensor.lilas_rain_chance
+                features:
+                  - type: "bar-gauge"
           - type: horizontal-stack
             cards:
               - type: tile
                 entity: sensor.lilas_snow_chance
+                features:
+                  - type: "bar-gauge"
               - type: tile
                 entity: sensor.lilas_freeze_chance
+                features:
+                  - type: "bar-gauge"
   - type: vertical-stack
     cards:
       - type: weather-forecast
