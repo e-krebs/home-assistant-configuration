@@ -44,10 +44,10 @@ cards:
               yellow: 1.1
               red: 2
             needle: true
-          - type: gauge
+          - type: tile
             entity: sensor.processor_use
-            severity: !include ../view-raspberry/gauge-severity_percent.yaml
-            needle: true
+            features:
+              - type: "bar-gauge"
       - type: horizontal-stack
         cards:
           - type: tile
@@ -62,7 +62,8 @@ cards:
             entity: sensor.disk_use_percent
             features:
               - type: "bar-gauge"
-      - type: sensor
+      - type: tile
         entity: sensor.home_assistant_v2_db
-        graph: line
-        hours_to_show: 48
+        features:
+          - type: "trend-graph"
+            hours_to_show: 48

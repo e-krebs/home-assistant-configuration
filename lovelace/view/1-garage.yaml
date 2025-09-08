@@ -12,12 +12,14 @@ cards:
             entity: switch.ecran
       - type: horizontal-stack
         cards:
-          - type: sensor
+          - type: tile
             entity: sensor.pc_power
-            graph: line
-          - type: sensor
+            features:
+              - type: "trend-graph"
+          - type: tile
             entity: sensor.ecran_power
-            graph: line
+            features:
+              - type: "trend-graph"
       - type: grid
         square: false
         columns: 2
@@ -31,10 +33,8 @@ cards:
     cards:
       - type: tile
         entity: sensor.machine_a_laver
-      - type: sensor
+      - type: tile
         entity: sensor.laver_power
-        graph: line
-        hours_to_show: 48
-        limits:
-          min: 0
-          max: 50
+        features:
+          - type: "trend-graph"
+            hours_to_show: 48
