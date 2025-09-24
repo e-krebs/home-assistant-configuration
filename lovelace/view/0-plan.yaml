@@ -12,14 +12,27 @@ cards:
         entity: sensor.machine_a_laver
       - type: tile
         entity: switch.pc_universal
+        features:
+          - type: "toggle"
       - type: tile
         entity: switch.ecran
+        features:
+          - type: "toggle"
       - type: tile
         entity: media_player.ps4_universal
+        features:
+          - type: "media-player-playback"
+          - type: "media-player-volume-slider"
       - type: tile
         entity: media_player.beam
+        features:
+          - type: "media-player-playback"
+          - type: "media-player-volume-slider"
       - type: tile
         entity: media_player.shield_universal
+        features:
+          - type: "media-player-playback"
+          - type: "media-player-volume-slider"
   - type: vertical-stack
     title: météo
     cards:

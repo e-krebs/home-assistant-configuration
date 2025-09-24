@@ -8,8 +8,12 @@ cards:
         cards:
           - type: tile
             entity: switch.pc_universal
+            features:
+              - type: "toggle"
           - type: tile
             entity: switch.ecran
+            features:
+              - type: "toggle"
       - type: horizontal-stack
         cards:
           - type: tile
