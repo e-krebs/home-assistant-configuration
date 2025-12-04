@@ -36,13 +36,12 @@ cards:
     cards:
       - type: horizontal-stack
         cards:
-          - type: gauge
+          - type: tile
             entity: sensor.load_5m
-            max: 3
-            severity:
-              green: 0
-              yellow: 1.1
-              red: 2
+            features:
+              - type: "bar-gauge"
+                min: 0
+                max: 3
             needle: true
           - type: tile
             entity: sensor.processor_use
