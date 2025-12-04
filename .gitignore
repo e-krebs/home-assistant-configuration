@@ -21,3 +21,4 @@ zw*.xml
 www/rss
 .HA_VERSION
 *.log
+.ha_run.lock
