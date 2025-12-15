@@ -10,13 +10,13 @@ sensor:
     resource: !secret endpoint_public_ip
     name: public_ip
     value_template: '{{ value_json.ip }}'
-  - platform: template
-    sensors:
-      compagnie_expires_in:
-        friendly_name: 'Days before compagnie SSL expires'
-        value_template: >
-          {{ has_value('sensor.compagnie_expiry') and ((as_timestamp(states('sensor.compagnie_expiry')) - as_timestamp(now())) / 86400) | int }}
-        unit_of_measurement: 'days'
+
+template:
+  - sensor:
+      - unit_of_measurement: days
+        default_entity_id: sensor.compagnie_expires_in
+        name: Days before compagnie SSL expires
+        state: "{{ has_value('sensor.compagnie_expiry') and ((as_timestamp(states('sensor.compagnie_expiry')) - as_timestamp(now())) / 86400) | int }}"
 
 homeassistant:
   customize:
@@ -37,92 +37,92 @@ homeassistant:
       friendly_name: mogaba
 
 automation:
-- id: dns_change
-  alias: dns change
-  trigger:
-    platform: state
-    entity_id: sensor.compagnie_krebs_tech
-  action:
-    - service: notify.mobile_app_phone_manu
-      data:
-        title: "le dns a été mis à jour"
-        message: '{{ states(''sensor.compagnie_krebs_tech'') }}'
+  - id: dns_change
+    alias: dns change
+    trigger:
+      platform: state
+      entity_id: sensor.compagnie_krebs_tech
+    action:
+      - service: notify.mobile_app_phone_manu
         data:
-          icon: /local/notification/dns.png
-          clickAction: !secret endpoint_host
-          tag: 'dns'
-- id: public_ip_change
-  alias: public ip change
-  trigger:
-    platform: state
-    entity_id: sensor.public_ip
-  condition:
-    - condition: template
-      value_template: >
-        {{ trigger.from_state is not none and trigger.to_state is not none and
-           trigger.from_state.state != 'unknown' and trigger.to_state.state != 'unknown' and
-           trigger.from_state.state != 'unavailable' and trigger.to_state.state != 'unavailable' and
-           trigger.to_state.state != trigger.from_state.state }}
-  action:
-    - service: notify.mobile_app_phone_manu
-      data:
-        title: "l'adresse ip publique a changée"
-        message: '{{ states(''sensor.public_ip'') }}'
+          title: "le dns a été mis à jour"
+          message: '{{ states(''sensor.compagnie_krebs_tech'') }}'
+          data:
+            icon: /local/notification/dns.png
+            clickAction: !secret endpoint_host
+            tag: 'dns'
+  - id: public_ip_change
+    alias: public ip change
+    trigger:
+      platform: state
+      entity_id: sensor.public_ip
+    condition:
+      - condition: template
+        value_template: >
+          {{ trigger.from_state is not none and trigger.to_state is not none and
+            trigger.from_state.state != 'unknown' and trigger.to_state.state != 'unknown' and
+            trigger.from_state.state != 'unavailable' and trigger.to_state.state != 'unavailable' and
+            trigger.to_state.state != trigger.from_state.state }}
+    action:
+      - service: notify.mobile_app_phone_manu
         data:
-          icon: /local/notification/ip-network.png
-          clickAction: !secret endpoint_outside
-          tag: 'public_ip'
-# https://community.home-assistant.io/t/lets-encrypt-add-on-not-renewing-certificates-correctly/214294/7
-- id: compagnie_auto_renew
-  alias: auto-renew compagnie SSL certificate (let's encrypt)
-  trigger:
-  - platform: time
-    at: 09:00:00
-  condition:
-  - condition: numeric_state
-    entity_id: sensor.compagnie_expires_in
-    below: '21'
-  action:
-  - service: hassio.addon_restart
-    data:
-      addon: core_letsencrypt
-  - service: notify.mobile_app_phone_manu
-    data:
-      title: "compagnie SSL renewal"
-      message: " 1/3 - let's encrypt 🔒"
-      data:
-        icon: /local/notification/ssl-renewal.png
-        clickAction: /hassio/addon/core_letsencrypt/logs
-        tag: 'ssl_renewal'
-  - delay:
-      hours: 0
-      minutes: 5
-      seconds: 0
-      milliseconds: 0
-  - service: hassio.addon_restart
-    data:
-      addon: core_nginx_proxy
-  - service: notify.mobile_app_phone_manu
-    data:
-      title: "compagnie SSL renewal"
-      message: " 2/3 - nginx 🔗"
-      data:
-        icon: /local/notification/ssl-renewal.png
-        clickAction: /hassio/addon/core_nginx_proxy/logs
-        tag: 'ssl_renewal'
-  - delay:
-      hours: 0
-      minutes: 1
-      seconds: 0
-      milliseconds: 0
-  - service: homeassistant.restart
-    data: {}
-  - service: notify.mobile_app_phone_manu
-    data:
-      title: "compagnie SSL renewal"
-      message: " 3/3 - restarted ✅"
-      data:
-        icon: /local/notification/ssl-renewal.png
-        clickAction: !secret endpoint_host
-        tag: 'ssl_renewal'
-  mode: single
+          title: "l'adresse ip publique a changée"
+          message: '{{ states(''sensor.public_ip'') }}'
+          data:
+            icon: /local/notification/ip-network.png
+            clickAction: !secret endpoint_outside
+            tag: 'public_ip'
+  # https://community.home-assistant.io/t/lets-encrypt-add-on-not-renewing-certificates-correctly/214294/7
+  - id: compagnie_auto_renew
+    alias: auto-renew compagnie SSL certificate (let's encrypt)
+    trigger:
+      - platform: time
+        at: 09:00:00
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.compagnie_expires_in
+        below: '21'
+    action:
+      - service: hassio.addon_restart
+        data:
+          addon: core_letsencrypt
+      - service: notify.mobile_app_phone_manu
+        data:
+          title: "compagnie SSL renewal"
+          message: " 1/3 - let's encrypt 🔒"
+          data:
+            icon: /local/notification/ssl-renewal.png
+            clickAction: /hassio/addon/core_letsencrypt/logs
+            tag: 'ssl_renewal'
+      - delay:
+          hours: 0
+          minutes: 5
+          seconds: 0
+          milliseconds: 0
+      - service: hassio.addon_restart
+        data:
+          addon: core_nginx_proxy
+      - service: notify.mobile_app_phone_manu
+        data:
+          title: "compagnie SSL renewal"
+          message: " 2/3 - nginx 🔗"
+          data:
+            icon: /local/notification/ssl-renewal.png
+            clickAction: /hassio/addon/core_nginx_proxy/logs
+            tag: 'ssl_renewal'
+      - delay:
+          hours: 0
+          minutes: 1
+          seconds: 0
+          milliseconds: 0
+      - service: homeassistant.restart
+        data: {}
+      - service: notify.mobile_app_phone_manu
+        data:
+          title: "compagnie SSL renewal"
+          message: " 3/3 - restarted ✅"
+          data:
+            icon: /local/notification/ssl-renewal.png
+            clickAction: !secret endpoint_host
+            tag: 'ssl_renewal'
+    mode: single

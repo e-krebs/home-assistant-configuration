@@ -4,37 +4,45 @@ recorder:
       - sensor.pc_power
       - sensor.ecran_power
 
-sensor:
-  - platform: template
-    sensors:
-      pc_power_raw:
-        value_template: >-
-          {% if is_state('sensor.pc_power', '0.0') %}          
+template:
+  - sensor:
+      - default_entity_id: sensor.ecran_power_raw
+        state: "{% if is_state('sensor.ecran_power', '0.0') %}
           {% else %}
-            {{states('sensor.pc_power') | round(1)}}
-          {% endif %}
-
-      ecran_power_raw:
-        value_template: >-
-          {% if is_state('sensor.ecran_power', '0.0') %}          
+          {{states('sensor.ecran_power') | round(1)}}
+          {% endif %}"
+        name: ecran_power_raw
+      - default_entity_id: sensor.pc_power_raw
+        state: "{% if is_state('sensor.pc_power', '0.0') %}
           {% else %}
-            {{states('sensor.ecran_power') | round(1)}}
-          {% endif %}
-
-switch:
-  - platform: template
-    switches:
-      pc_switch_safe:
-        unique_id: pc_switch_safe
-        value_template: "{{ is_state('switch.pc_switch', 'on') }}"
+          {{states('sensor.pc_power') | round(1)}}
+          {% endif %}"
+        name: pc_power_raw
+  - switch:
+      - unique_id: pc_switch_safe
         turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.pc_switch
+          - data:
+              entity_id: switch.pc_switch
+            action: switch.turn_on
         turn_off:
-          service: script.turn_on
-          data:
-            entity_id: script.pc_switch_off
+          - data:
+              entity_id: script.pc_switch_off
+            action: script.turn_on
+        default_entity_id: switch.pc_switch_safe
+        state: "{{ is_state('switch.pc_switch', 'on') }}"
+        name: pc_switch_safe
+      - unique_id: pc_universal
+        turn_on:
+          - action: switch.turn_on
+            data:
+              entity_id: switch.pc_switch_safe
+        turn_off:
+          - action: switch.turn_off
+            data:
+              entity_id: switch.pc_switch_safe
+        default_entity_id: switch.pc_universal
+        state: "{{ is_state('switch.pc_switch_safe', 'on') }}"
+        name: pc_universal
 
 rest_command:
   pc_sleep:
@@ -70,6 +78,10 @@ homeassistant:
       friendly_name: écran
       icon: mdi:monitor
 
+    switch.pc_universal:
+      icon: mdi:desktop-tower
+      friendly_name: pc
+
     script.pc_deep_sleep:
       icon: mdi:power-plug-off
 
@@ -94,8 +106,8 @@ automation:
             clickAction: !secret endpoint_garage
             tag: 'pc_switch'
             actions:
-            - title: éteindre
-              action: pc_switch_safe_off
+              - title: éteindre
+                action: pc_switch_safe_off
 
   # prise pc : ON
   - id: pc_state_on_deps
@@ -152,8 +164,8 @@ automation:
             clickAction: !secret endpoint_garage
             tag: 'pc_switch'
             actions:
-            - title: éteindre
-              action: pc_switch_safe_off
+              - title: éteindre
+                action: pc_switch_safe_off
 
   # pc allumé à 20h00
   - id: check_pc_on_20
@@ -176,32 +188,44 @@ automation:
             clickAction: !secret endpoint_garage
             tag: 'pc_switch'
             actions:
-            - title: éteindre
-              action: pc_switch_safe_off
+              - title: éteindre
+                action: pc_switch_safe_off
 
 script:
   pc_deep_sleep:
     alias: 'pc : veille prolongée + prise éteinte'
     sequence:
-    - condition: state
-      entity_id: switch.pc_switch
-      state: 'on'
-    - service: rest_command.pc_sleep
-    - wait_template: "{{ float(states('sensor.pc_power')) <= 5 }}"
-      timeout:
-        minutes: 1
-      continue_on_timeout: false
-    - service: script.pc_turn_off
+      - condition: state
+        entity_id: switch.pc_switch
+        state: 'on'
+      - service: rest_command.pc_sleep
+      - wait_template: "{{ float(states('sensor.pc_power')) <= 5 }}"
+        timeout:
+          minutes: 1
+        continue_on_timeout: false
+      - service: script.pc_turn_off
 
   pc_switch_off:
     alias: 'pc: veille prolongée / off'
     sequence:
-    - condition: state
-      entity_id: switch.pc_switch
-      state: 'on'
-    - service_template: >
-        {% if (states('sensor.pc_power') | float > 20) %}
-          script.pc_deep_sleep
-        {% else %}
-          script.pc_turn_off
-        {% endif %}
+      - condition: state
+        entity_id: switch.pc_switch
+        state: 'on'
+      - service_template: >
+          {% if (states('sensor.pc_power') | float > 20) %}
+            script.pc_deep_sleep
+          {% else %}
+            script.pc_turn_off
+          {% endif %}
+
+  pc_turn_off:
+    alias: pc turn off (dependency)
+    sequence:
+      - action: switch.turn_off
+        entity_id: switch.pc_switch
+      - wait_template: "{{ float(states('sensor.ecran_power')) < 6 }}"
+        timeout:
+          minutes: 1
+        continue_on_timeout: false
+      - action: switch.turn_off
+        entity_id: switch.ecran

@@ -3,13 +3,12 @@ recorder:
     entities:
       - sensor.meteo_france_temperature
 
-sensor:
-  - platform: template
-    sensors:
-      meteo_france_temperature:
-        value_template: >
-          {{ state_attr('weather.lilas', 'temperature') }}
-        unit_of_measurement: °C
+template:
+  - sensor:
+      - unit_of_measurement: °C
+        default_entity_id: sensor.meteo_france_temperature
+        state: "{{ state_attr('weather.lilas', 'temperature') }}"
+        name: meteo_france_temperature
 
 homeassistant:
   customize:
@@ -26,7 +25,7 @@ homeassistant:
     sensor.lilas_daily_precipitation:
       friendly_name: précipitations
       icon: mdi:weather-pouring
-  
+
     sensor.lilas_rain_chance:
       friendly_name: pluie
 

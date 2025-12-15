@@ -12,12 +12,12 @@ input_select:
       - 'on'
       - 'done'
 
-sensor:
-  - platform: template
-    sensors:
-      machine_a_laver:
-        unique_id: machine_a_laver
-        value_template: '{{ states(''input_select.machine_a_laver'')}}'
+template:
+  - sensor:
+      - unique_id: machine_a_laver
+        default_entity_id: sensor.machine_a_laver
+        state: "{{ states('input_select.machine_a_laver')}}"
+        name: machine_a_laver
 
 homeassistant:
   customize:

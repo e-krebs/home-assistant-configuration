@@ -10,13 +10,12 @@ person:
       - device_tracker.manu_wifi
       - device_tracker.manu_phone
 
-binary_sensor:
-  - platform: template
-    sensors:
-      manu:
-        device_class: occupancy
-        value_template: >
-          {{ is_state('person.manu', 'home') }}
+template:
+  - binary_sensor:
+      - device_class: occupancy
+        default_entity_id: binary_sensor.manu
+        state: "{{ is_state('person.manu', 'home') }}"
+        name: manu
 
 homeassistant:
   customize:
