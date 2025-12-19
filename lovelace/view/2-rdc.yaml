@@ -1,6 +1,10 @@
-title: salon
-icon: mdi:fireplace
+title: maison
+icon: mdi:home
 cards:
+  - type: tile
+    entity: switch.luc_cd
+    features:
+      - type: "toggle"
   - type: vertical-stack
     title: media center
     cards:

@@ -54,3 +54,47 @@
       notify_device: a7a3df2f3d99f289e202f52e46830038
       device_message: "\U0001F512 compagnie.krebs.tech va expirer dans {{ expire_days_var
         }} jours"
+- id: '1766163859482'
+  alias: CD Luc OFF
+  description: ''
+  triggers:
+  - trigger: time
+    at: '22:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: a6437b6e13aed63b3f4e3915423095d8
+    entity_id: ee88bb484ed6aa5bb27da4416d4d34c6
+    domain: switch
+    metadata:
+      secondary: false
+  mode: single
+- id: '1766163896412'
+  alias: CD Luc ON
+  description: ''
+  triggers:
+  - trigger: time
+    at: 07:00:00
+    weekday:
+    - sun
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: a6437b6e13aed63b3f4e3915423095d8
+    entity_id: ee88bb484ed6aa5bb27da4416d4d34c6
+    domain: switch
+  mode: single
