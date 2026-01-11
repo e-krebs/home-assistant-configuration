@@ -12,12 +12,10 @@ cards:
         entity: sensor.machine_a_laver
       - type: tile
         entity: switch.pc_universal
-        features:
-          - type: "toggle"
       - type: tile
         entity: switch.ecran
-        features:
-          - type: "toggle"
+      - type: tile
+        entity: switch.luc_cd
       - type: tile
         entity: media_player.ps4_universal
       - type: tile
