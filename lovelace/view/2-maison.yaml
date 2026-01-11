@@ -1,10 +1,19 @@
 title: maison
 icon: mdi:home
 cards:
-  - type: tile
-    entity: switch.luc_cd
-    features:
-      - type: "toggle"
+  - type: horizontal-stack
+    title: CD Luc
+    cards:
+      - type: tile
+        entity: switch.luc_cd
+        features:
+          - type: "toggle"
+      - type: vertical-stack
+        cards:
+          - type: tile
+            entity: sensor.luc_cd_state
+          - type: tile
+            entity: sensor.luc_cd_power
   - type: vertical-stack
     title: media center
     cards:
