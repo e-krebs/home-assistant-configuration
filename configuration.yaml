@@ -28,7 +28,14 @@ http:
   trusted_proxies:
     - 172.30.33.0/24
 lovelace:
-  mode: yaml
+  resource_mode: yaml
+  dashboards:
+    lovelace:
+      mode: yaml
+      filename: ui-lovelace.yaml
+      title: Overview
+      icon: mdi:view-dashboard
+      show_in_sidebar: true
   resources:
     - url: /hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js
       type: module
