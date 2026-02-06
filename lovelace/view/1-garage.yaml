@@ -2,18 +2,30 @@ title: garage
 icon: mdi:garage
 cards:
   - type: vertical-stack
-    title: bureau
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: tile
+      - type: heading
+        heading: bureau
+        icon: mdi:desk
+        badges:
+          - type: entity
             entity: switch.pc_universal
-            features:
-              - type: "toggle"
-          - type: tile
+            color: state
+            state_content: name
+            name: pc
+            tap_action:
+              action: toggle
+          - type: entity
             entity: switch.ecran
-            features:
-              - type: "toggle"
+            color: state
+            state_content: name
+            name: écran
+            tap_action:
+              action: toggle
+          - type: entity
+            entity: sensor.zigbee_4b_battery
+            color: state
+            tap_action:
+              action: more-info
       - type: horizontal-stack
         cards:
           - type: tile
@@ -24,19 +36,24 @@ cards:
             entity: sensor.ecran_power
             features:
               - type: "trend-graph"
-      - type: grid
-        square: false
-        columns: 2
-        cards:
-          - type: tile
-            entity: sensor.zigbee_4b_battery
-            features:
-              - type: "bar-gauge"
   - type: vertical-stack
-    title: machine à laver
     cards:
-      - type: tile
-        entity: sensor.machine_a_laver
+      - type: heading
+        heading: machine à laver
+        icon: mdi:washing-machine
+        badges:
+          - type: entity
+            entity: sensor.machine_a_laver
+            color: state
+            state_content: state
+            tap_action:
+              action: more-info
+          - type: entity
+            entity: switch.laver_switch
+            icon: mdi:power-socket-eu
+            color: state
+            tap_action:
+              action: more-info
       - type: tile
         entity: sensor.laver_power
         features:

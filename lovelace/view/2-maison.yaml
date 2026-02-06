@@ -1,23 +1,39 @@
 title: maison
 icon: mdi:home
 cards:
-  - type: horizontal-stack
-    title: CD Luc
-    cards:
-      - type: tile
+  - type: heading
+    heading: CD Luc
+    icon: mdi:disc-player
+    badges:
+      - type: entity
+        entity: sensor.luc_cd_state
+        color: state
+        tap_action:
+          action: more-info
+      - type: entity
+        entity: sensor.luc_cd_power
+        tap_action:
+          action: more-info
+      - type: entity
         entity: switch.luc_cd
-        features:
-          - type: "toggle"
-      - type: vertical-stack
-        cards:
-          - type: tile
-            entity: sensor.luc_cd_state
-          - type: tile
-            entity: sensor.luc_cd_power
+        color: state
+        icon: mdi:power-socket-eu
+        tap_action:
+          action: toggle
   - type: vertical-stack
-    title: media center
     cards:
-      - type: vertical-stack
+      - type: heading
+        heading: media center
+        icon: mdi:multimedia
+        badges:
+          - type: entity
+            entity: media_player.beam
+            color: state
+            state_content: name
+            name: barre de son
+            tap_action:
+              action: more-info
+      - type: horizontal-stack
         cards:
           - type: tile
             entity: media_player.ps4_universal
@@ -29,15 +45,3 @@ cards:
             features:
               - type: "media-player-playback"
               - type: "media-player-volume-slider"
-      - type: conditional
-        conditions:
-          - entity: media_player.ps4_universal
-            state: "off"
-          - entity: media_player.shield_universal
-            state: "idle"
-        card:
-          type: tile
-          entity: media_player.beam
-          features:
-            - type: "media-player-playback"
-            - type: "media-player-volume-slider"
