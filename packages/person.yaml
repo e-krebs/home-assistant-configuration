@@ -19,10 +19,6 @@ template:
 
 homeassistant:
   customize:
-    device_tracker.google_maps_102756001364712049780:
-      friendly_name: manu
-      icon: mdi:google-maps
-
     device_tracker.manu_wifi:
       icon: mdi:cellphone-wireless
       friendly_name: pixel 9 pro (wifi)

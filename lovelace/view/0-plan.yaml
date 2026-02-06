@@ -15,7 +15,11 @@ cards:
       - type: tile
         entity: switch.ecran
       - type: tile
-        entity: switch.luc_cd
+        entity: sensor.luc_cd_state
+        color: yellow
+        icon_tap_action:
+          action: more-info
+          entity: switch.luc_cd
       - type: tile
         entity: media_player.ps4_universal
       - type: tile
