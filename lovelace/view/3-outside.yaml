@@ -14,11 +14,6 @@ cards:
     cards:
       - type: tile
         entity: person.manu
-  - type: map
-    default_zoom: 15
-    aspect_ratio: 4x3
-    entities:
-      - device_tracker.manu_phone
   - type: vertical-stack
     cards:
       - type: vertical-stack

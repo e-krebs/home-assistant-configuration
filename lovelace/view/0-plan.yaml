@@ -29,6 +29,30 @@ cards:
   - type: vertical-stack
     title: météo
     cards:
+      - type: heading
+        heading: risque d'allergies
+        icon: mdi:flower-pollen
+        badges:
+          - type: entity
+            entity: sensor.qualite_globale_pollen_les_lilas
+            state_content: Libellé
+            show_icon: false
+          - type: entity
+            entity: sensor.qualite_globale_pollen_les_lilas_j_1
+            state_content: Libellé
+            icon: mdi:fast-forward
+      - type: heading
+        heading: qualité de l'air
+        icon: mdi:lungs
+        badges:
+          - type: entity
+            entity: sensor.qualite_globale_les_lilas
+            state_content: Libellé
+            show_icon: false
+          - type: entity
+            entity: sensor.qualite_globale_les_lilas_j_1
+            state_content: Libellé
+            icon: mdi:fast-forward
       - type: horizontal-stack
         cards:
           - type: markdown

@@ -1,6 +1,7 @@
 custom_components/**
 www/community/**
 .storage/**
+.cache
 
 .google_maps_location_sharing.cookies*
 .ps4-games*.json

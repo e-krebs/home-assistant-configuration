@@ -30,7 +30,7 @@ http:
 lovelace:
   resource_mode: yaml
   dashboards:
-    lovelace:
+    my-house:
       mode: yaml
       filename: ui-lovelace.yaml
       title: Overview
@@ -38,6 +38,8 @@ lovelace:
       show_in_sidebar: true
   resources:
     - url: /hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js
+      type: module
+    - url: /hacsfiles/pollenprognos-card/pollenprognos-card.js
       type: module
 mobile_app:
 recorder:

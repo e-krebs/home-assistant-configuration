@@ -19,18 +19,17 @@ cards:
         color: state
         icon: mdi:power-socket-eu
         tap_action:
-          action: toggle
+          action: more-info
   - type: vertical-stack
     cards:
       - type: heading
         heading: media center
         icon: mdi:multimedia
         badges:
-          - type: entity
+          - type: button
             entity: media_player.beam
-            color: state
-            state_content: name
-            name: barre de son
+            icon: mdi:surround-sound
+            text: beam
             tap_action:
               action: more-info
       - type: horizontal-stack

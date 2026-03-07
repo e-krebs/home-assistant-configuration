@@ -8,7 +8,6 @@ person:
     id: manu
     device_trackers:
       - device_tracker.manu_wifi
-      - device_tracker.manu_phone
 
 template:
   - binary_sensor:
@@ -22,10 +21,6 @@ homeassistant:
     device_tracker.manu_wifi:
       icon: mdi:cellphone-wireless
       friendly_name: pixel 9 pro (wifi)
-
-    device_tracker.manu_phone:
-      icon: mdi:cellphone
-      friendly_name: pixel 9 pro
 
     person.manu:
       icon: mdi:human-male

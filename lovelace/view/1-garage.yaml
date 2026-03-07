@@ -13,14 +13,14 @@ cards:
             state_content: name
             name: pc
             tap_action:
-              action: toggle
+              action: more-info
           - type: entity
             entity: switch.ecran
             color: state
             state_content: name
             name: écran
             tap_action:
-              action: toggle
+              action: more-info
           - type: entity
             entity: sensor.zigbee_4b_battery
             color: state
