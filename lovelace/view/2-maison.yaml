@@ -6,7 +6,7 @@ cards:
     icon: mdi:disc-player
     badges:
       - type: entity
-        entity: sensor.luc_cd_state
+        entity: binary_sensor.luc_cd_state
         color: state
         tap_action:
           action: more-info

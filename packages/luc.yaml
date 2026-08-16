@@ -3,4 +3,4 @@ recorder:
     entities:
       - switch.Luc_cd
       - sensor.luc_cd_power
-      - sensor.luc_cd_state
+      - binary_sensor.luc_cd_state

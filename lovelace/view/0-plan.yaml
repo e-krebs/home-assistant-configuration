@@ -15,7 +15,7 @@ cards:
       - type: tile
         entity: switch.ecran
       - type: tile
-        entity: sensor.luc_cd_state
+        entity: binary_sensor.luc_cd_state
         color: yellow
         icon_tap_action:
           action: more-info
@@ -77,6 +77,18 @@ cards:
           - type: horizontal-stack
             cards:
               - type: tile
+                entity: weather.tomorrow_io_home_daily
+                features:
+                  - type: "precipitation-forecast"
+                    forecast_type: hourly
+              - type: tile
+                entity: weather.lilas
+                features:
+                  - type: "precipitation-forecast"
+                    forecast_type: hourly
+          - type: horizontal-stack
+            cards:
+              - type: tile
                 entity: sensor.lilas_snow_chance
                 features:
                   - type: "bar-gauge"
@@ -86,10 +98,34 @@ cards:
                   - type: "bar-gauge"
   - type: vertical-stack
     cards:
-      - type: weather-forecast
-        entity: weather.tomorrow_io_home_daily
-        title: dark sky
-      - type: weather-forecast
-        entity: weather.lilas
-        title: météo france
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: weather.tomorrow_io_home_daily
+            features:
+              - type: "temperature-forecast"
+                forecast_type: daily
+                days_to_show: 5
+          - type: tile
+            entity: weather.tomorrow_io_home_daily
+            features:
+              - type: "precipitation-forecast"
+                forecast_type: daily
+                days_to_show: 5
+                precipitation_type: amount
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: weather.lilas
+            features:
+              - type: "temperature-forecast"
+                forecast_type: daily
+                days_to_show: 5
+          - type: tile
+            entity: weather.lilas
+            features:
+              - type: "precipitation-forecast"
+                forecast_type: daily
+                days_to_show: 5
+                precipitation_type:
       - type: custom:horizon-card
