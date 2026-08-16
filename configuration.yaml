@@ -21,12 +21,6 @@ homeassistant:
     - !secret hassio_dbpath
   packages: !include_dir_named packages/
   country: FR
-http:
-  ip_ban_enabled: true
-  login_attempts_threshold: 3
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 172.30.33.0/24
 lovelace:
   resource_mode: yaml
   dashboards:
