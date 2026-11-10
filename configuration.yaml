@@ -31,9 +31,9 @@ lovelace:
       icon: mdi:view-dashboard
       show_in_sidebar: true
   resources:
-    - url: /hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js
+    - url: /local/community/lovelace-horizon-card/lovelace-horizon-card.js
       type: module
-    - url: /hacsfiles/pollenprognos-card/pollenprognos-card.js
+    - url: /local/community/pollenprognos-card/pollenprognos-card.js
       type: module
 mobile_app:
 recorder:
