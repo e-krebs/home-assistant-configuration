@@ -1,3 +1,0 @@
-sensor:
-  - platform: folder
-    folder: /config/www/rss/files
